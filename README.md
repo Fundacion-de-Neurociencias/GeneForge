@@ -63,6 +63,14 @@ See [`docs/architecture.md`](docs/architecture.md) for detailed technical explan
 
 ---
 
+## Model Version 0.1
+
+This is the initial version of GeneForge. The model has been trained on genetic sequences, and you can download it from Hugging Face:
+
+[Download GeneForge model (version 0.1)](https://huggingface.co/fneurociencias/GeneForge)
+
+---
+
 ## 🤝 Contributing
 
 Contributions welcome! Feel free to:
