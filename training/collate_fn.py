@@ -1,0 +1,1 @@
+# Collate function for batches
