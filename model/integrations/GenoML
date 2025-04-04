@@ -1,0 +1,52 @@
+## 🚀 GenoML Integration
+
+We have integrated **GenoML**, an automated machine learning framework designed for genomics, to enhance the **GeneForge** workflow. **GenoML** automates the data preprocessing, model selection, and training processes, making it easier to work with genomic data.
+
+### What **GenoML** Adds to **GeneForge**:
+
+- **Automated Data Preprocessing**: GenoML handles complex tasks like data cleaning, normalization, and encoding, making genomic data ready for use in **GeneForge**.
+- **Model Optimization**: GenoML intelligently explores multiple techniques to select and tune the best model for genomic tasks.
+- **Simplified Workflow**: Users can now run machine learning tasks on genomic data without deep expertise in data science, thanks to **GenoML**'s AutoML capabilities.
+- **Zero-Shot Protein Generation**: **GenoML** helps improve **GeneForge**'s ability to perform zero-shot tasks, such as generating functional protein sequences based on textual descriptions.
+
+### How to Use **GenoML** with **GeneForge**:
+
+1. **Install GenoML**:
+   ```bash
+   pip install genoML
+   ```
+
+2. **Preprocess Data**: Use **GenoML**’s preprocessing functions to clean and format genomic sequences before passing them into **GeneForge** for further analysis.
+   ```python
+   import genoML
+
+   # Example RNA sequence
+   seq = "AUGCGUAUCGAU..."
+
+   # Preprocess using GenoML
+   preprocessed_data = genoML.preprocess(seq)
+   ```
+
+3. **Generate Sequences**: After preprocessing, use **GeneForge**'s models to generate **DNA**, **RNA**, or **protein** sequences.
+   ```python
+   from gene_tokenizer.tokenizer import tokenize_sequence
+   from model.gene_transformer import GeneTransformer
+
+   tokens = tokenize_sequence(preprocessed_data)
+   model = GeneTransformer()
+
+   # Generate therapeutic sequence
+   prediction = model(tokens)
+   ```
+
+4. **Optimize and Evaluate**: **GenoML** will help in tuning your machine learning models and ensure that the best possible model is selected for each genomic task, improving the quality and reliability of the predictions.
+
+---
+
+### Documentation:
+Refer to the **GenoML** documentation for more details on how to use the tool and integrate it into your workflows.
+
+This integration allows **GeneForge** to become more **user-friendly** and **powerful**, enabling the design and editing of **DNA**, **RNA**, and **protein sequences** for more personalized and effective gene therapies.
+```
+
+This markdown will ensure that your **README.md** file is properly formatted with the necessary structure. You can copy and paste this directly into your **README.md** file in GitHub!
