@@ -94,20 +94,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 **GeneForge** is a project by **Fundación de Neurociencias**.  
 Lead Investigator: [Manuel Menéndez González](https://github.com/manuelmenendezg)
-
-```
-
----
-
-### **3. Other Documentation Updates:**
-
-1. **Update `docs/architecture.md`**: Expand the document to include details about how **GeneForge** has expanded from a **DNA-only model** to a **multimodal model** supporting **RNA** and **proteins**.
-2. **Add Examples**: Include example notebooks and code for **RNA** and **protein sequence generation** alongside the existing **DNA** examples.
-
----
-
-### **4. Other Considerations:**
-
-- If you are using **RNA** and **protein sequences**, you might need additional datasets and models to train these components effectively. Consider referencing or integrating existing **public datasets** such as **RNA-seq** data or **protein structure databases**.
-  
-- **Future Steps**: As you plan for **commercial versions** (after the open-source release), you might want to add more **advanced features** related to **RNA-editing technologies**, **protein folding prediction**, or **real-time clinical application testing**.
