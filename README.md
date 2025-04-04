@@ -1,23 +1,3 @@
-### **1. Actualización del Nombre:**
-
-El nombre **GeneForge** sigue siendo adecuado para este tipo de enfoque **multimodal**, ya que refleja la idea de **"forjar"** secuencias genéticas. Sin embargo, si queremos reflejar de forma más explícita el hecho de que estamos trabajando con **DNA**, **RNA**, y **proteínas**, podríamos considerar nombres como:
-
-- **GeneForge-X** (donde "X" puede hacer referencia a la inclusión de RNA y proteínas)
-- **GeneFusion** (enfatizando la **fusión** de diferentes modalidades: DNA, RNA y proteínas)
-- **MultiGeneForge** (enfatizando el enfoque **multimodal**)
-- **GeneMeld** (resaltando la **integración** de niveles genéticos, transcriptómicos y proteómicos)
-
-**Recomendación**: Si no consideras que el cambio de nombre sea necesario para la fase actual, lo ideal sería mantener **GeneForge** y hacer énfasis en la **actualización multimodal** en la documentación.
-
----
-
-### **2. Documentación Actualizada del README:**
-
-Una vez hayas decidido si mantienes el nombre o no, podemos **actualizar el archivo README** con toda la información sobre las nuevas capacidades de **GeneForge**. A continuación, te proporciono una **estructura sugerida** para el archivo README en **Markdown**:
-
----
-
-```markdown
 # GeneForge
 
 **GeneForge** is a powerful multimodal transformer-based model designed for the generation and editing of genetic sequences. Originally focused on DNA, **GeneForge** now supports DNA, RNA, and protein sequence design, providing the tools for designing **personalized gene therapies** across multiple biological levels.
