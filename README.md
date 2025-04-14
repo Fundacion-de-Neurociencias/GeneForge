@@ -62,6 +62,7 @@ You can also explore `examples/inference_predict_variant_effect.ipynb` for more 
 ## 📚 Documentation
 
 See [`docs/architecture.md`](docs/architecture.md) for detailed technical explanations and multimodal framework insights.
+See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Codon_Optimization_Integration.md for integration of Codon Documentation.
 
 ---
 
