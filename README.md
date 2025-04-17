@@ -65,9 +65,11 @@ See [`docs/architecture.md`](docs/architecture.md) for detailed technical explan
 
 See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Codon_Optimization_Integration.md for integration of Codon Documentation.
 
+See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Integration_with_RFdiffusion2 for integration with RFdiffusion2 for Protein and Enzyme Design
+
 ---
 
-## Model Version 0.2
+## Model Version 0.3
 
 This is the enhanced version (0.2) of **GeneForge**, now supporting **DNA**, **RNA**, and **protein** sequence generation and editing.
 
