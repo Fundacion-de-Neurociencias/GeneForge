@@ -1,0 +1,178 @@
+# GeneForge - Integration with RFdiffusion2 for Protein and Enzyme Design
+
+**GeneForge** is a multimodal transformer-based model designed for the generation and editing of genetic sequences. Initially focused on **DNA**, **GeneForge** now supports **DNA**, **RNA**, and **protein** sequence design, providing tools for creating **personalized gene therapies** across multiple biological levels.
+
+With the integration of **RFdiffusion2**, **GeneForge** is now capable of designing optimized **DNA, RNA**, and **protein sequences** that ensure **more efficient gene expression**, **stability**, and **therapeutic outcomes**.
+
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
+---
+
+## 🚀 Overview
+
+**GeneForge** now includes integration with **RFdiffusion2**, a deep learning model capable of **scaffolding enzyme active sites** directly from **atom-level descriptions** of reaction mechanisms. This enhances the ability of **GeneForge** to design **enzymes** that catalyze novel reactions with improved **functional activity**.
+
+### **Key Features**:
+- **Codon optimization** for RNA and protein sequences.
+- **Atomic-level enzyme scaffolding** for designing **enzymes** from catalytic transition state descriptions.
+- **Multi-omics support**, integrating **DNA**, **RNA**, and **protein** sequence optimization.
+- **Direct design of enzymatic structures** with specific **catalytic properties**.
+
+---
+
+## 📦 Installation
+
+To set up the environment and integrate **RFdiffusion2** with **GeneForge**, follow these steps:
+
+```bash
+git clone https://github.com/Fundacion-de-Neurociencias/GeneForge.git
+cd GeneForge
+pip install -r requirements.txt
+pip install rf-diffusion2
+```
+
+---
+
+## 🧬 Example Usage
+
+Example: Generate optimized protein sequence using **GeneForge** and **RFdiffusion2**:
+
+```python
+from gene_tokenizer.tokenizer import tokenize_sequence
+from model.gene_transformer import GeneTransformer
+import rf_diffusion2
+
+# Example DNA sequence
+seq = "ATGCGTACGTTAGC..."
+
+# Preprocess the sequence using GenoML for improved input
+preprocessed_data = genoML.preprocess(seq)
+
+# Tokenize the sequence for GeneForge
+tokens = tokenize_sequence(preprocessed_data)
+model = GeneTransformer()
+
+# Generate therapeutic sequence
+generated_sequence = model(tokens)
+
+# Optimize codon usage for the generated sequence
+optimized_protein = rf_diffusion2.optimize_protein(generated_sequence)
+
+print("Optimized Protein Sequence:", optimized_protein)
+```
+
+---
+
+## 🏗️ Repository Structure
+
+- `gene_tokenizer/`: K-mer and codon tokenizers for **DNA** and **RNA** sequences.
+- `model/`: Transformer architecture for generating **DNA**, **RNA**, and **protein** sequences.
+- `training/`: Scripts for pretraining and fine-tuning the multimodal model.
+- `examples/`: Notebooks with real-world use cases, including **protein generation** and **optimization**.
+- `docs/`: Model documentation, architectural overview, and specifications.
+- `rf_diffusion2/`: Deep learning model for **protein design**, **enzyme scaffolding**, and **codon optimization**.
+
+---
+
+## 📚 Documentation
+
+See [`docs/architecture.md`](docs/architecture.md) for detailed technical explanations and multimodal framework insights.
+
+---
+
+## **Model Version 0.3**
+
+This version of **GeneForge** supports **protein design** and **codon optimization** via integration with **RFdiffusion2**.
+
+You can download the latest version from **Hugging Face**:
+
+[Download GeneForge Model (version 0.3)](https://huggingface.co/fneurociencias/GeneForge)
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! Feel free to:
+- Open issues
+- Submit pull requests
+- Suggest improvements for model design, training pipeline, or multimodal integration
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🧠 Project Lead
+
+**GeneForge** is a project by **Fundación de Neurociencias**.  
+Lead Investigator: [Manuel Menéndez González](https://github.com/manuelmenendezg)
+
+---
+
+## 🚀 RFdiffusion2 Integration
+
+**GeneForge** now includes **RFdiffusion2** for **atom-level enzyme design** and **codon optimization**. This integration enhances **GeneForge’s ability** to design **enzymes** and **protein sequences** based on **atomic-level descriptions** of active sites and reaction mechanisms.
+
+### **What RFdiffusion2 Adds to GeneForge**:
+
+1. **Atomic-level Protein Design**: Generate **enzymes** and **proteins** directly from **reaction mechanisms** using atomic descriptions.
+2. **Codon Optimization**: Improve the **expression efficiency** and **stability** of **RNA** and **protein sequences**.
+3. **Novel Protein Scaffold Generation**: Design **protein scaffolds** that support complex enzyme active sites, facilitating **new enzyme activities**.
+4. **Enzyme Functionality Testing**: Test the generated sequences for **activity** using experimental techniques.
+
+### **How to Use RFdiffusion2 with GeneForge**:
+
+1. **Install RFdiffusion2**:
+   ```bash
+   pip install rf-diffusion2
+   ```
+
+2. **Generate Sequences**:
+   After generating a **DNA** or **RNA** sequence with **GeneForge**, use **RFdiffusion2** for **protein structure prediction** and **codon optimization**.
+   
+3. **Optimize and Evaluate**:
+   Use **RFdiffusion2** to refine and optimize the **protein sequences** generated by **GeneForge**, ensuring they meet **functional criteria** for therapeutic applications.
+
+---
+
+By incorporating **RFdiffusion2**, **GeneForge** can now efficiently generate **optimized proteins**, **enzymes**, and **therapies** with enhanced functionality and stability, opening new avenues for **biomedical applications**.
+```
+
+---
+
+### **File Location and Name**:
+
+1. **File Name**: `GeneForge_RFDiffusion2_Integration.md`
+2. **File Location**: Place this file either in the root directory of your repository or in a **`docs/`** folder. If you want to keep everything organized, a **`docs/`** folder might be a better option. You can upload it as:
+
+   ```
+   /GeneForge/docs/GeneForge_RFDiffusion2_Integration.md
+   ```
+
+### **Steps to Upload**:
+
+1. **Clone or access your repository locally**:
+   If you haven’t cloned the repository yet, do so with:
+
+   ```bash
+   git clone https://github.com/Fundacion-de-Neurociencias/GeneForge.git
+   ```
+
+2. **Create the file** (if you are adding a new one):
+   Create the file in the appropriate directory (`docs/`).
+
+   ```bash
+   touch docs/GeneForge_RFDiffusion2_Integration.md
+   ```
+
+3. **Commit and push the file**:
+   After placing the file in the repository, you can commit and push the changes:
+
+   ```bash
+   git add .
+   git commit -m "Added documentation for RFdiffusion2 integration"
+   git push origin main
+   ```
