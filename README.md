@@ -67,6 +67,8 @@ See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Codon_Opti
 
 See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Integration_with_RFdiffusion2 for integration with RFdiffusion2 for Protein and Enzyme Design
 
+See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/GeneForge_Harvard_AI_Model_Integration.md for integration with Harvard's Universal AI Model
+
 ---
 
 ## Model Version 0.3
