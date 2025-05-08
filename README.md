@@ -1,6 +1,6 @@
 # GeneForge
 
-**GeneForge** is a powerful multimodal transformer-based model designed for the generation and editing of genetic sequences. Originally focused on DNA, **GeneForge** now supports DNA, RNA, and protein sequence design, providing the tools for designing **personalized gene therapies** across multiple biological levels.
+**GeneForge** is a powerful multimodal transformer-based model designed for the **generation, editing, and regulation of genetic sequences**. Originally focused on DNA, GeneForge now supports **DNA, RNA, protein, and enhancer sequence design**, making it a versatile tool for engineering **personalized gene therapies** and **cellular programming** across multiple biological levels.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
@@ -8,95 +8,105 @@
 
 ## 🚀 Overview
 
-**GeneForge** enables the **in silico** design and generation of **DNA, RNA**, and **protein sequences**. This multimodal framework helps in:
+GeneForge enables the **in silico design and manipulation** of genetic material, integrating advanced language models, structural biology tools, and regulatory logic. Current capabilities include:
 
-- Predicting the functional impact of variants (SNVs, InDels) at **DNA**, **RNA**, and **protein** levels.
-- Modeling splicing and regulatory alterations.
-- Designing **CRISPR guides**, **AAV payloads**, **therapeutic oligos**, and **RNA-based therapies**.
-- Personalizing gene therapy for individual genomes across all molecular levels.
+- Prediction of functional impact of SNVs, InDels across DNA, RNA, and protein.
+- Splicing and regulatory modeling.
+- Design of:
+  - **CRISPR guides**, **AAV payloads**, **antisense oligos**, **siRNA**, **mRNA vaccines**.
+  - **Protein sequences** and **enzymes** via integration with **ProGen3** and **RFdiffusion2**.
+  - **Enhancers** (regulatory DNA) with support for **transcription factor logic** and **cell-specific control**.
+- Integration with proteomics tools (e.g., **CHIMERYS**) for experimental validation of expression and function.
+- Codon optimization and translation-aware modeling for therapeutic contexts.
+- Planning synthetic pathways for aptamers, PNAs, and engineered gene constructs.
 
 ---
 
 ## 📦 Installation
 
-To set up the environment:
-
 ```bash
 git clone https://github.com/Fundacion-de-Neurociencias/GeneForge.git
 cd GeneForge
 pip install -r requirements.txt
-```
+🧬 Example Usage
+Generate a therapeutic protein sequence:
 
----
-
-## 🧬 Example Usage
-
-Example: Predict functional impact of a mutation and generate therapeutic sequence:
-
-```python
+python
+Copiar
+Editar
 from gene_tokenizer.tokenizer import tokenize_sequence
 from model.gene_transformer import GeneTransformer
 
-seq = "ATGCGTACGTTAGC..."  # Example DNA sequence
+seq = "ATGCGTACGTTAGC..."  # DNA sequence
 tokens = tokenize_sequence(seq)
 model = GeneTransformer()
 
-# Generate therapeutic sequence
 prediction = model(tokens)
-```
+Design an enhancer targeting EPO in mouse hematopoietic cells:
 
-You can also explore `examples/inference_predict_variant_effect.ipynb` for more examples.
+yaml
+Copiar
+Editar
+- enhancer:
+    name: "Epo_Upregulator"
+    target_gene: "EPO"
+    cell_type: "hematopoietic_progenitor"
+    species: "Mus musculus"
+    factors: ["GATA1", "KLF1", "TAL1"]
+    goal: "upregulate"
+    model: "GeneForgeEnhancerGen-v1"
+🏗️ Repository Structure
+gene_tokenizer/: Tokenization for DNA, RNA, and protein inputs.
 
----
+model/: Transformer-based architectures.
 
-## 🏗️ Repository Structure
+training/: Pretraining and fine-tuning workflows.
 
-- `gene_tokenizer/`: K-mer and codon tokenizers for **DNA** and **RNA** sequences.
-- `model/`: Transformer architecture for generating **DNA**, **RNA**, and **protein** sequences.
-- `training/`: Scripts for pretraining and fine-tuning the multimodal model.
-- `examples/`: Notebooks with real-world use cases, including RNA and protein generation.
-- `docs/`: Model documentation, architectural overview, and specifications.
+examples/: Notebooks covering DNA/RNA/protein/enhancer generation and validation.
 
----
+docs/: Architectural docs and module specifications.
 
-## 📚 Documentation
+enhancer_design/: Modules and templates for synthetic regulatory element generation.
 
-See [`docs/architecture.md`](docs/architecture.md) for detailed technical explanations and multimodal framework insights.
+📚 Documentation
+docs/architecture.md: Core technical documentation.
 
-See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Codon_Optimization_Integration.md for integration of Codon Documentation.
+Codon_Optimization_Integration.md: Codon usage integration.
 
-See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/Integration_with_RFdiffusion2 for integration with RFdiffusion2 for Protein and Enzyme Design
+Integration_with_RFdiffusion2.md: Protein structure-based generation.
 
-See https://github.com/Fundacion-de-Neurociencias/GeneForge/blob/main/GeneForge_Harvard_AI_Model_Integration.md for integration with Harvard's Universal AI Model
+GeneForge_Harvard_AI_Model_Integration.md: Integration with Harvard's AI for structural and functional prediction.
 
----
+ProGen3_and_CHIMERYS.md: Integration for generation + proteomic validation.
 
-## Model Version 0.3
+Enhancer_Module_Spec.md: Design and deployment of synthetic enhancers.
 
-This is the enhanced version (0.2) of **GeneForge**, now supporting **DNA**, **RNA**, and **protein** sequence generation and editing.
+Model Version 0.3
+This version introduces:
 
-You can download the latest model version from **Hugging Face**:
+Full support for enhancer design and regulatory control.
 
-[Download GeneForge Model (version 0.2)](https://huggingface.co/fneurociencias/GeneForge)
+Protein generation using ProGen3-46B (optional external).
 
----
+CHIMERYS integration for PSM quantification.
 
-## 🤝 Contributing
+Compatibility with GeneForgeLang: a YAML-based language to describe and execute genetic programming workflows.
 
-Contributions are welcome! Feel free to:
-- Open issues
-- Submit pull requests
-- Suggest improvements for model design, training pipeline, or multimodal integration
+Model available at Hugging Face:
+👉 Download GeneForge Model v0.3
 
----
+🤝 Contributing
+We welcome collaboration from researchers, bioinformaticians, and computational biologists. You can:
 
-## 📄 License
+Open issues with suggestions or bug reports.
 
-This project is licensed under the [MIT License](LICENSE).
+Submit pull requests.
 
----
+Propose new use cases (e.g., aptamer design, mRNA vaccines, gene circuit simulation).
 
-## 🧠 Project Lead
+📄 License
+MIT License
 
-**GeneForge** is a project by **Fundación de Neurociencias**.  
-Lead Investigator: [Manuel Menéndez González](https://github.com/manuelmenendezg)
+🧠 Project Lead
+GeneForge is developed by Fundación de Neurociencias.
+Lead Investigator: Manuel Menéndez González
