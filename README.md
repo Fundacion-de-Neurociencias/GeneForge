@@ -22,6 +22,39 @@ GeneForge enables the **in silico design and manipulation** of genetic material,
 - Compatibility with single-cell simulation tools (e.g., **scMultiSim**) for multi-omics and spatial expression analysis.
 
 ---
+## 🧬 GeneForgeLang (GFL)
+
+**GeneForgeLang (GFL)** is a symbolic language designed to represent genetic edits, molecular targets, functional outcomes, pathways, and phenotypic predictions. It serves as the input layer for the GeneForge platform.
+
+### Key Features
+- Structured, parseable syntax: `edit()`, `target()`, `effect()`, `link()`, `simulate()`
+- Supports representation of genetic mechanisms across multiple omics levels
+- Integrates with model parser, inference engine, and validation tools
+
+### Example
+```gfl
+edit(SNP:rs1042522)
+target(gene:TP53)
+effect(function:loss_of_function)
+pathway(p53:apoptosis)
+link(edit->target)
+link(target->effect)
+simulate(tumorigenesis)
+```
+
+### Getting Started
+1. Write `.gfl` code in `gfl/examples/*.gfl`
+2. Parse using `gfl/parser.py`
+3. Run prediction via `gfl/inference_engine.py`
+4. Validate using `gfl/validation_pipeline.py`
+
+### Developer Tools
+- AST parser with export to JSON
+- Unit tests in `tests/test_parser.py`
+- Interface layer in `model/transformer_multimodal.py`
+
+---
+For syntax details and use cases, see [`gfl/grammar.md`](./gfl/grammar.md) and [`gfl/syntax.md`](./gfl/syntax.md).
 
 ## 📦 Installation
 
