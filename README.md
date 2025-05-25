@@ -1,37 +1,30 @@
 # GeneForge
 
-**GeneForge** is a powerful multimodal transformer-based model designed for the **generation, editing, and regulation of genetic sequences**. Originally focused on DNA, GeneForge now supports **DNA, RNA, protein, and enhancer sequence design**, making it a versatile tool for engineering **personalized gene therapies** and **cellular programming** across multiple biological levels.
+**GeneForge** is a multimodal transformer platform for the **generation, editing and regulation of genetic sequences**. Originally DNA-centric, it now supports **DNA, RNA, protein and enhancer design**, enabling everything from personalised gene therapies to large-scale cellular programming.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 ---
 
-## 🚀 Overview
+## 🚀 Overview  *(v0.3)*
 
-GeneForge enables the **in silico design and manipulation** of genetic material, integrating advanced language models, structural biology tools, and regulatory logic. Current capabilities include:
-
-- Prediction of functional impact of SNVs, InDels across DNA, RNA, and protein.
-- Splicing and regulatory modeling.
-- Design of:
-  - **CRISPR guides**, **AAV payloads**, **antisense oligos**, **siRNA**, **mRNA vaccines**.
-  - **Protein sequences** and **enzymes** via integration with **ProGen3** and **RFdiffusion2**.
-  - **Enhancers** (regulatory DNA) with support for **transcription factor logic** and **cell-specific control**.
-- Integration with proteomics tools (e.g., **CHIMERYS**) for experimental validation of expression and function.
-- Codon optimization and translation-aware modeling for therapeutic contexts.
-- Planning synthetic pathways for aptamers, PNAs, and engineered gene constructs.
-- Compatibility with single-cell simulation tools (e.g., **scMultiSim**) for multi-omics and spatial expression analysis.
+| Capability | Details |
+|------------|---------|
+| **Variant impact** | SNVs / InDels across DNA, RNA, protein |
+| **Regulatory modelling** | Splicing, TF-logic, enhancer design |
+| **Design modules** | CRISPR guides, AAV payloads, antisense, siRNA, mRNA vaccines |
+| **Protein / enzyme generation** | ProGen3-46B + RFdiffusion2 integration |
+| **Enhancer synthesis** | Cell-type-specific TF logic; codon-aware optimisation |
+| **Omics integration** | scMultiSim (single-cell multi-omics & spatial), CHIMERYS proteomics |
+| **Pathway planning** | Aptamers, PNAs, synthetic gene constructs |
+| **Simulation** | Single-cell & tissue-scale expression dynamics |
 
 ---
+
 ## 🧬 GeneForgeLang (GFL)
 
-**GeneForgeLang (GFL)** is a symbolic language designed to represent genetic edits, molecular targets, functional outcomes, pathways, and phenotypic predictions. It serves as the input layer for the GeneForge platform.
+A concise, symbolic language that drives the GeneForge inference engine.
 
-### Key Features
-- Structured, parseable syntax: `edit()`, `target()`, `effect()`, `link()`, `simulate()`
-- Supports representation of genetic mechanisms across multiple omics levels
-- Integrates with model parser, inference engine, and validation tools
-
-### Example
 ```gfl
 edit(SNP:rs1042522)
 target(gene:TP53)
@@ -42,19 +35,52 @@ link(target->effect)
 simulate(tumorigenesis)
 ```
 
-### Getting Started
-1. Write `.gfl` code in `gfl/examples/*.gfl`
-2. Parse using `gfl/parser.py`
-3. Run prediction via `gfl/inference_engine.py`
-4. Validate using `gfl/validation_pipeline.py`
+### Quick-start
+
+1. Place `.gfl` files in `gfl/examples/`.
+2. `python gfl/parser.py my_example.gfl` → AST.
+3. `gfl/inference_engine.py` → effect / off-target prediction.
+4. `gfl/validation_pipeline.py` → benchmark with GTEx, TCGA, gnomAD.
 
 ### Developer Tools
-- AST parser with export to JSON
+- AST parser with JSON export
 - Unit tests in `tests/test_parser.py`
-- Interface layer in `model/transformer_multimodal.py`
+- GFL-aware interface layer in `model/transformer_multimodal.py`
+
+For full syntax see [`gfl/grammar.md`](./gfl/grammar.md) and [`gfl/syntax.md`](./gfl/syntax.md).
 
 ---
-For syntax details and use cases, see [`gfl/grammar.md`](./gfl/grammar.md) and [`gfl/syntax.md`](./gfl/syntax.md).
+
+## 🧠 gfDB – GeneForge Inferential Knowledge-base
+
+`gfDB` is a **24 / 7 self-updating, probabilistic database** built by reasoning over public omics resources with GFL.
+
+| Key trait | Why it matters |
+|-----------|---------------|
+| **Inferential** | Generates *new* variant→function→phenotype links |
+| **Probabilistic** | Every entry carries a confidence score & traceable evidence |
+| **Auto-updating** | Continuously monitors gnomAD, ClinVar, TCGA, GTEx … and re-annotates itself |
+| **Semantic** | All facts stored as GFL sentences → instantly usable by the engine |
+
+Example gfDB record:
+
+```json
+{
+  "id": "gfdb:rs987654",
+  "confidence_score": 0.83,
+  "gfl": [
+    "edit(SNP:rs987654)",
+    "target(gene:BRCA2)",
+    "effect(function:likely_loss_of_function)",
+    "simulate(probable_breast_cancer)"
+  ],
+  "explanation": "Inferred by similarity to BRCA1 rs1042522 pathogenic variant."
+}
+```
+
+Daemon script: `gfdb/inference_daemon.py` writes new JSON entries in `gfdb/entries/`.
+
+---
 
 ## 📦 Installation
 
@@ -62,97 +88,74 @@ For syntax details and use cases, see [`gfl/grammar.md`](./gfl/grammar.md) and [
 git clone https://github.com/Fundacion-de-Neurociencias/GeneForge.git
 cd GeneForge
 pip install -r requirements.txt
-````
+```
 
 ---
 
-## 🧬 Example Usage
-
-### Generate a therapeutic protein sequence:
+## 🧪 Example Usage
 
 ```python
-from gene_tokenizer.tokenizer import tokenize_sequence
-from model.gene_transformer import GeneTransformer
+from gfl.parser import GFLParser
+from model.transformer_multimodal import GeneForgeModel
+from gfl.inference_engine import InferenceEngine
 
-seq = "ATGCGTACGTTAGC..."  # DNA sequence
-tokens = tokenize_sequence(seq)
-model = GeneTransformer()
+gfl_text = """
+edit(SNP:rs1042522)
+target(gene:TP53)
+effect(function:loss_of_function)
+simulate(tumorigenesis)
+"""
 
-prediction = model(tokens)
+ast   = GFLParser().parse(gfl_text)
+model = GeneForgeModel()
+engine = InferenceEngine(model)
+
+print(engine.predict_effect(ast.to_dict()))
 ```
 
-### Design an enhancer targeting EPO in mouse hematopoietic cells:
-
-```yaml
-- enhancer:
-    name: "Epo_Upregulator"
-    target_gene: "EPO"
-    cell_type: "hematopoietic_progenitor"
-    species: "Mus musculus"
-    factors: ["GATA1", "KLF1", "TAL1"]
-    goal: "upregulate"
-    model: "GeneForgeEnhancerGen-v1"
-```
+Interactive exploration: **`notebooks/GFL_sandbox.ipynb`**.
 
 ---
 
 ## 🏗️ Repository Structure
 
-* `gene_tokenizer/`: Tokenization for DNA, RNA, and protein inputs.
-* `model/`: Transformer-based architectures.
-* `training/`: Pretraining and fine-tuning workflows.
-* `examples/`: Notebooks covering DNA/RNA/protein/enhancer generation and validation.
-* `docs/`: Architectural docs and module specifications.
-* `enhancer_design/`: Modules and templates for synthetic regulatory element generation.
+```
+gene_tokenizer/        tokenisers for DNA-RNA-protein
+model/                 transformer architectures (GFL-aware)
+gfl/                   parser, syntax, examples, validation
+gfdb/                  inference daemon + generated entries
+integration/           HEVisum connector, omics data loaders
+notebooks/             Jupyter sandboxes and tutorials
+enhancer_design/       synthetic enhancer module
+tests/                 unit tests (e.g., test_parser.py)
+docs/                  deep-dive architecture & specs
+```
 
 ---
 
-## 📚 Documentation
+## 📚 Key Documentation
 
-* `docs/architecture.md`: Core technical documentation.
-* `Codon_Optimization_Integration.md`: Codon usage integration.
-* `Integration_with_RFdiffusion2.md`: Protein structure-based generation.
-* `GeneForge_Harvard_AI_Model_Integration.md`: Integration with Harvard's AI for structural and functional prediction.
-* `ProGen3_and_CHIMERYS.md`: Integration for generation + proteomic validation.
-* `Enhancer_Module_Spec.md`: Design and deployment of synthetic enhancers.
-* `Ensembl_API_Usage.md`: REST-based annotation integration from Ensembl.
-* `Integration_with_scMultiSim.md`: Multimodal and spatial simulation workflows.
-* `Integration_with_ATOMICA.md`: Protein property prediction with universal representations.
-
----
-
-## 🧪 Model Version 0.3
-
-This version introduces:
-
-* Full support for enhancer design and regulatory control.
-* Protein generation using ProGen3-46B (optional external).
-* CHIMERYS integration for PSM quantification.
-* Compatibility with GeneForgeLang: a YAML-based language to describe and execute genetic programming workflows.
-* Extended functionality for PNA and aptamer modeling.
-
-👉 [Download GeneForge Model v0.3 from Hugging Face](https://huggingface.co/fneurociencias/GeneForge)
+* `docs/architecture.md` – core design
+* `gfl/grammar.md`, `gfl/syntax.md` – language spec
+* `docs/GFL_Manual.md` – user & developer manual
+* `Integration_with_RFdiffusion2.md`, `ProGen3_and_CHIMERYS.md` – protein pipelines
+* `Integration_with_scMultiSim.md`, `Integration_with_ATOMICA.md` – multi-omics simulations
 
 ---
 
 ## 🤝 Contributing
 
-We welcome collaboration from researchers, bioinformaticians, and computational biologists. You can:
-
-* Open issues with suggestions or bug reports.
-* Submit pull requests.
-* Propose new use cases (e.g., aptamer design, mRNA vaccines, gene circuit simulation).
+We welcome PRs, issues and new use-case proposals (aptamer design, mRNA vaccines, gene-circuit simulation, …).
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE).
 
 ---
 
 ## 🧠 Project Lead
 
-**GeneForge** is developed by **Fundación de Neurociencias**
-Lead Investigator: [Manuel Menéndez González](https://github.com/manuelmenendezg)
-
+**Fundación de Neurociencias**  
+Lead Investigator – [Manuel Menéndez González](https://github.com/manuelmenendezg)
