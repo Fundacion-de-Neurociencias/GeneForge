@@ -1,25 +1,22 @@
 ﻿# model/transformer_multimodal.py
 """
-Minimal stub so the QuickScore demo can import GeneForgeModel
-without syntax errors. Replace later with real transformer code.
+Tiny heuristic model for QuickScore demo.
+Confidence = 0.90 if gene in {TP53, BRCA1, BRCA2}, else 0.60.
 """
 
 class GeneForgeModel:
     def __init__(self):
-        # placeholder init
         pass
 
-    # ---- helpers expected by the rest of the demo ------------------
-    def from_gfl_ast(self, ast):
-        """Return dummy token list from AST."""
-        return []
+    # ------------------------------------------------------------------ #
+    def predict(self, features: dict) -> dict:
+        gene = (features.get("target") or "").upper()
+        high_impact = {"TP53", "BRCA1", "BRCA2"}
+        conf = 0.90 if gene in high_impact else 0.60
+        label = "likely_pathogenic" if conf >= 0.75 else "uncertain"
+        return {"label": label, "confidence": conf}
 
-    def predict(self, features):
-        """Return a dummy prediction dict with confidence key."""
-        return {"label": "unknown", "confidence": 0.5}
-
-    def infer_causal_variant(self, phenotype_description):
-        return {"variant": "rs000000", "confidence": 0.4}
-
-    def assess_off_targets(self, gfl_ast):
-        return []
+    # stubs required by other helpers
+    def from_gfl_ast(self, ast): return []
+    def infer_causal_variant(self, phe): return {"variant": "rs000000", "confidence": 0.4}
+    def assess_off_targets(self, ast): return []
