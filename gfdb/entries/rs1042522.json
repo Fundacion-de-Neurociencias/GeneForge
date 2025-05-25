@@ -1,0 +1,15 @@
+{
+  "variant": "rs1042522",
+  "gene": "TP53",
+  "confidence": 0.5,
+  "gfl": [
+    "edit(SNP:rs1042522)",
+    "target(gene:TP53)",
+    "effect(function:unknown)",
+    "simulate(unspecified)",
+    "link(edit->target)",
+    "link(target->effect)",
+    "link(effect->simulate)"
+  ],
+  "explanation": "Inferred by GeneForge"
+}
