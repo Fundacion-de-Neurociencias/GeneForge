@@ -5,13 +5,13 @@ High-level helper to score a single variant with GeneForge.
 
 from typing import Dict
 from pathlib import Path
-import json                                # ✅ importa aquí, no dentro de la llamada
+import json
 
 from gfl.parser import GFLParser
 from gfl.inference_engine import InferenceEngine
 from model.transformer_multimodal import GeneForgeModel
 
-# ---------- minimal gfDB client ------------------------------------------
+# ------------ minimal gfDB client ---------------------------------------
 _GFDB_DIR = Path("gfdb/entries")
 _GFDB_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -22,11 +22,11 @@ def _entry_path(variant_id: str) -> Path:
 
 def _save_entry(entry: Dict):
     _entry_path(entry["variant"]).write_text(
-        json.dumps(entry, indent=2)        # ✅ ahora es sintaxis correcta
+        json.dumps(entry, indent=2)
     )
 
 
-# -------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 
 
 def score_variant(variant_id: str, gene: str) -> Dict:
@@ -59,14 +59,3 @@ def score_variant(variant_id: str, gene: str) -> Dict:
     _save_entry(entry)
 
     return {
-        "variant": variant_id,
-        "gene": gene,
-        "confidence": conf,
-        "gfdb_entry": entry,
-        "gfl_block": gfl_block,
-        "explanation": entry["explanation"]
-    }
-
-
-if __name__ == "__main__":
-    print(score_variant("rs1042522", "TP53"))
