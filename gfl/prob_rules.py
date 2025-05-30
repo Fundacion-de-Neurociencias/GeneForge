@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 import math
 from typing import Callable, Dict, Any, List
 
@@ -12,7 +12,8 @@ class ProbReasoner:
     def __init__(self, rules: List[ProbRule], prior: float = 0.5):
         self.rules = rules; self.prior = prior
     def posterior(self, ast: Dict[str, Any]) -> Dict[str, Any]:
-        log_odds = math.log(self.prior / (1 - self.prior)); fired=[]
+        log_odds = math.log(self.prior / (1 - self.prior)); fired=[        ProbRule('ncAA_LNP_match', 2.0, lambda n,ast=None: n['type']=='residue' and ('LNP' in str(ast)) ),
+    ]
         for n in ast["children"]:
             for r in self.rules:
                 if r.applies(n): log_odds += math.log(r.lr); fired.append(r.name)
@@ -32,4 +33,5 @@ def default_rules() -> List[ProbRule]:
         # NEW: repeat interruption boosts odds (LR 4)
         ProbRule("repeat_interruption", 4.0,
                  lambda n: n["type"]=="repeat_edit")
+            ProbRule('ncAA_LNP_match', 2.0, lambda n,ast=None: n['type']=='residue' and ('LNP' in str(ast)) ),
     ]
