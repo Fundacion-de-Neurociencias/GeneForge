@@ -1,0 +1,4 @@
+﻿# key: attr_regex -> LR multiplier
+tropism=liver: 3.0
+ligand=GalNAc: 2.5
+variant=CPE: 1.8
