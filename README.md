@@ -159,3 +159,15 @@ Released under the [MIT License](LICENSE).
 
 **Fundación de Neurociencias**  
 Lead Investigator – [Manuel Menéndez González](https://github.com/manuelmenendezg)
+### ✨ Mayo 2025
+Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+### ✨ Mayo 2025
+Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+### ✨ Mayo 2025
+Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+### ✨ Mayo 2025
+Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+### ✨ Mayo 2025
+Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+### ✨ Mayo 2025
+Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
