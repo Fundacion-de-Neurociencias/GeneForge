@@ -1,4 +1,4 @@
-﻿# gene_forge_sdk/score_variant.py
+# gene_forge_sdk/score_variant.py
 """
 High-level helper: score a single variant and store/update a gfDB JSON entry.
 """
@@ -11,7 +11,7 @@ from gfl.parser import GFLParser
 from gfl.inference_engine import InferenceEngine
 from model.transformer_multimodal import GeneForgeModel
 
-# ── gfDB minimal I/O ───────────────────────────────────────────────────────
+# -- gfDB minimal I/O -------------------------------------------------------
 _GFDB_DIR = Path("gfdb/entries")
 _GFDB_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -22,7 +22,7 @@ def _entry_path(variant_id: str) -> Path:
 
 def _save_entry(entry: Dict):
     _entry_path(entry["variant"]).write_text(json.dumps(entry, indent=2))
-# ───────────────────────────────────────────────────────────────────────────
+# ---------------------------------------------------------------------------
 
 
 def score_variant(variant_id: str, gene: str) -> Dict:

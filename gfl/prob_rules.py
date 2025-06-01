@@ -13,6 +13,11 @@ class ProbReasoner:
         self.rules = rules; self.prior = prior
     def posterior(self, ast: Dict[str, Any]) -> Dict[str, Any]:
         log_odds = math.log(self.prior / (1 - self.prior)); fired=[        ProbRule('ncAA_LNP_match', 2.0, lambda n,ast=None: n['type']=='residue' and ('LNP' in str(ast)) ),
+            ProbRule('uAUG_penalty',       0.4, lambda n,ast=None: n['type']=='uaug' and n['attrs'].get('frame','')!='0'),
+        ProbRule('structure_penalty',  0.6, lambda n,ast=None: n['type']=='structure' and float(n['attrs'].get('?G',0)) < -8),
+        ProbRule('gc_content_penalty', 0.8, lambda n,ast=None: n['type']=='gc_content' and float(n['attrs'].get('pct',0)) > 0.60),
+        ProbRule('rbp_Pumilio_penalty',0.7, lambda n,ast=None: n['type']=='rbp_site' and n['attrs'].get('rbp')=='Pumilio'),
+        ProbRule('mir34a_penalty',     0.7, lambda n,ast=None: n['type']=='mir_site' and n['attrs'].get('mir')=='miR34a'),
     ]
         for n in ast["children"]:
             for r in self.rules:
@@ -34,4 +39,9 @@ def default_rules() -> List[ProbRule]:
         ProbRule("repeat_interruption", 4.0,
                  lambda n: n["type"]=="repeat_edit")
             ProbRule('ncAA_LNP_match', 2.0, lambda n,ast=None: n['type']=='residue' and ('LNP' in str(ast)) ),
+            ProbRule('uAUG_penalty',       0.4, lambda n,ast=None: n['type']=='uaug' and n['attrs'].get('frame','')!='0'),
+        ProbRule('structure_penalty',  0.6, lambda n,ast=None: n['type']=='structure' and float(n['attrs'].get('?G',0)) < -8),
+        ProbRule('gc_content_penalty', 0.8, lambda n,ast=None: n['type']=='gc_content' and float(n['attrs'].get('pct',0)) > 0.60),
+        ProbRule('rbp_Pumilio_penalty',0.7, lambda n,ast=None: n['type']=='rbp_site' and n['attrs'].get('rbp')=='Pumilio'),
+        ProbRule('mir34a_penalty',     0.7, lambda n,ast=None: n['type']=='mir_site' and n['attrs'].get('mir')=='miR34a'),
     ]

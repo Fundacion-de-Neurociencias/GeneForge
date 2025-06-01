@@ -1,37 +1,43 @@
-﻿from typing import Any, Dict
-from gfl.prob_rules import ProbReasoner, default_rules
+﻿import torch
+from gfl.translate_lstm import TranslateLSTM
 
 class InferenceEngine:
-    """Inference engine with probabilistic rule layer."""
-    def __init__(self, model):
-        self.model = model
-        self.reasoner = ProbReasoner(default_rules())
+    def __init__(self):
+        # Cargar modelo TE si existe
+        try:
+            self.te_model = TranslateLSTM()
+            self.te_model.load_state_dict(torch.load("models/translate_lstm_ft.pth"))
+            self.te_model.eval()
+        except:
+            self.te_model = None
 
-    # ------------------------------------------------------------------ #
-    def predict_effect(self, ast_dict: Dict[str, Any]) -> Dict[str, Any]:
-        base = self.model.predict(self._extract_features(ast_dict))
-        post = self.reasoner.posterior(ast_dict | {})  # ensure dict copy
-        return {
-            "label": base.get("label", "unknown"),
-            "confidence": post["confidence"],
-            "explanation": ", ".join(post["fired_rules"] or ["base_only"])
-        }
+    def predict_translation_efficiency(self, utr_seq, cds_seq, features):
+        if not self.te_model:
+            return {"te": None, "explanation": "No TE model available"}
+        # TODO: convertir utr_seq, cds_seq a one-hot tensors (stub)
+        utr_onehot = torch.zeros((1, len(utr_seq), 4))
+        cds_onehot = torch.zeros((1, len(cds_seq), 4))
+        extra = torch.tensor([features], dtype=torch.float32)
+        te_pred = self.te_model(utr_onehot, cds_onehot, extra).item()
+        return {"te": round(te_pred, 3), "explanation": "Predicted via TranslateLSTM"}
 
-    # stubs for completeness
-    def retroinfer_cause(self, phenotype: str) -> Dict[str, Any]:
-        return {"variant": "rs0", "confidence": 0.4}
+    def post_annotate(self, ast_dict):
+        # Reglas probabilísticas existentes
+        from gfl.prob_rules import ProbReasoner, default_rules
+        post = ProbReasoner(default_rules(), prior=0.5).posterior(ast_dict)
+        result = {"confidence": post["confidence"], "fired_rules": post["fired_rules"]}
 
-    def evaluate_off_target(self, ast_dict: Dict[str, Any]) -> Dict[str, Any]:
-        return {"off_target_hits": []}
-
-    # ------------------------------------------------------------------ #
-    def _extract_features(self, ast: Dict[str, Any]) -> Dict[str, Any]:
-        feats: Dict[str, Any] = {}
-        for n in ast["children"]:
-            if n["type"] == "target":
-                feats["target"] = n["attrs"].get("val")
-            if n["type"] == "effect":
-                feats["effect"] = n["attrs"].get("val")
-            if n["type"] == "vector":
-                feats["vector"] = n["attrs"].get("val")
-        return feats
+        # Extraer features de AST si existen (ejemplo simple)
+        utr_seq   = ast_dict.get("attrs",{}).get("utr_sequence","")
+        cds_seq   = ast_dict.get("attrs",{}).get("cds_sequence","")
+        # Ejemplo de features: [GC%, ΔG, #uAUG, #RBP_sites, #miR_sites]
+        features = [
+            float(ast_dict.get("attrs",{}).get("gc_pct",   0)),
+            float(ast_dict.get("attrs",{}).get("dg",       0)),
+            int(ast_dict.get("attrs",{}).get("uaug_count",0)),
+            int(ast_dict.get("attrs",{}).get("rbp_count", 0)),
+            int(ast_dict.get("attrs",{}).get("mir_count", 0))
+        ]
+        te_res = self.predict_translation_efficiency(utr_seq, cds_seq, features)
+        result["te_prediction"] = te_res
+        return result
