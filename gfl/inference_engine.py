@@ -41,3 +41,11 @@ class InferenceEngine:
         te_res = self.predict_translation_efficiency(utr_seq, cds_seq, features)
         result["te_prediction"] = te_res
         return result
+# ─── Handling new edit types in inference ───────────────────────
+if node.name == "prime_edit":
+    context["has_prime_edit"] = True
+    context["pegRNA"] = node.args.get("pegRNA")
+
+if node.name == "base_edit":
+    context["has_base_edit"] = True
+    context["base_editor"] = node.args.get("base_editor")
