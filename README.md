@@ -160,14 +160,45 @@ Released under the [MIT License](LICENSE).
 **Fundación de Neurociencias**  
 Lead Investigator – [Manuel Menéndez González](https://github.com/manuelmenendezg)
 ### ✨ Mayo 2025
-Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+Se añade motor bayesiano y nuevas construcciones (ector, 
+epeat_edit, 
+isk, …).
 ### ✨ Mayo 2025
-Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+Se añade motor bayesiano y nuevas construcciones (ector, 
+epeat_edit, 
+isk, …).
 ### ✨ Mayo 2025
-Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+Se añade motor bayesiano y nuevas construcciones (ector, 
+epeat_edit, 
+isk, …).
 ### ✨ Mayo 2025
-Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+Se añade motor bayesiano y nuevas construcciones (ector, 
+epeat_edit, 
+isk, …).
 ### ✨ Mayo 2025
-Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+Se añade motor bayesiano y nuevas construcciones (ector, 
+epeat_edit, 
+isk, …).
 ### ✨ Mayo 2025
-Se añade motor bayesiano y nuevas construcciones (ector, epeat_edit, isk, …).
+Se añade motor bayesiano y nuevas construcciones (ector, 
+epeat_edit, 
+isk, …).
+
+---
+
+## ?? Integraci�n de Edici�n Gen�tica
+
+GeneForge ahora reconoce nodos avanzados del lenguaje GFL como:
+
+- `prime_edit(...)`
+- `base_edit(...)`
+- `prime_del(...)`
+
+Esto permite representar t�cnicas modernas de edici�n gen�tica como prime editing o base editing.
+
+### ?? Cambios relevantes
+
+- `inference_engine.py`: compatibilidad con los nuevos nodos.
+- `translate_lstm.py`: modelo stub para eficiencia de traducci�n.
+- Documentaci�n: ver `docs/variant_effects_integration.md`.
+

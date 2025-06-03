@@ -1,6 +1,6 @@
 ﻿from gfl import parser
 from gfl.semantic_validator import validate_ast
-from gfl.exporters import ast_to_vcf, ast_to_json, ast_to_gff
+from gfl.exporters import ast_to_vcf, ast_to_json, ast_to_gff, ast_to_yaml
 
 code = """
 prime_edit(
@@ -38,3 +38,8 @@ gff = ast_to_gff(ast)
 with open("test_output.gff", "w", encoding="utf-8") as f:
     f.write(gff)
 print("📤 Exportado a test_output.gff")
+
+yaml_str = ast_to_yaml(ast)
+with open("test_output.yaml", "w", encoding="utf-8") as f:
+    f.write(yaml_str)
+print("📤 Exportado a test_output.yaml")

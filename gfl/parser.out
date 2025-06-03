@@ -1,0 +1,245 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    MINUS
+    NUMBER
+    PEG
+    PLUS
+    STRING
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> prime_edit
+Rule 2     statement -> base_edit
+Rule 3     statement -> prime_del
+Rule 4     prime_edit -> PRIME_EDIT LPAREN arguments RPAREN
+Rule 5     base_edit -> BASE_EDIT LPAREN arguments RPAREN
+Rule 6     prime_del -> PRIME_DEL LPAREN arguments RPAREN
+Rule 7     arguments -> argument
+Rule 8     arguments -> argument COMMA arguments
+Rule 9     argument -> ID EQUALS ID
+
+Terminals, with rules where they appear
+
+BASE_EDIT            : 5
+COMMA                : 8
+EQUALS               : 9
+ID                   : 9 9
+LPAREN               : 4 5 6
+MINUS                : 
+NUMBER               : 
+PEG                  : 
+PLUS                 : 
+PRIME_DEL            : 6
+PRIME_EDIT           : 4
+RPAREN               : 4 5 6
+STRING               : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+argument             : 7 8
+arguments            : 4 5 6 8
+base_edit            : 2
+prime_del            : 3
+prime_edit           : 1
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . prime_edit
+    (2) statement -> . base_edit
+    (3) statement -> . prime_del
+    (4) prime_edit -> . PRIME_EDIT LPAREN arguments RPAREN
+    (5) base_edit -> . BASE_EDIT LPAREN arguments RPAREN
+    (6) prime_del -> . PRIME_DEL LPAREN arguments RPAREN
+
+    PRIME_EDIT      shift and go to state 5
+    BASE_EDIT       shift and go to state 6
+    PRIME_DEL       shift and go to state 7
+
+    statement                      shift and go to state 1
+    prime_edit                     shift and go to state 2
+    base_edit                      shift and go to state 3
+    prime_del                      shift and go to state 4
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> prime_edit .
+
+    $end            reduce using rule 1 (statement -> prime_edit .)
+
+
+state 3
+
+    (2) statement -> base_edit .
+
+    $end            reduce using rule 2 (statement -> base_edit .)
+
+
+state 4
+
+    (3) statement -> prime_del .
+
+    $end            reduce using rule 3 (statement -> prime_del .)
+
+
+state 5
+
+    (4) prime_edit -> PRIME_EDIT . LPAREN arguments RPAREN
+
+    LPAREN          shift and go to state 8
+
+
+state 6
+
+    (5) base_edit -> BASE_EDIT . LPAREN arguments RPAREN
+
+    LPAREN          shift and go to state 9
+
+
+state 7
+
+    (6) prime_del -> PRIME_DEL . LPAREN arguments RPAREN
+
+    LPAREN          shift and go to state 10
+
+
+state 8
+
+    (4) prime_edit -> PRIME_EDIT LPAREN . arguments RPAREN
+    (7) arguments -> . argument
+    (8) arguments -> . argument COMMA arguments
+    (9) argument -> . ID EQUALS ID
+
+    ID              shift and go to state 13
+
+    arguments                      shift and go to state 11
+    argument                       shift and go to state 12
+
+state 9
+
+    (5) base_edit -> BASE_EDIT LPAREN . arguments RPAREN
+    (7) arguments -> . argument
+    (8) arguments -> . argument COMMA arguments
+    (9) argument -> . ID EQUALS ID
+
+    ID              shift and go to state 13
+
+    arguments                      shift and go to state 14
+    argument                       shift and go to state 12
+
+state 10
+
+    (6) prime_del -> PRIME_DEL LPAREN . arguments RPAREN
+    (7) arguments -> . argument
+    (8) arguments -> . argument COMMA arguments
+    (9) argument -> . ID EQUALS ID
+
+    ID              shift and go to state 13
+
+    arguments                      shift and go to state 15
+    argument                       shift and go to state 12
+
+state 11
+
+    (4) prime_edit -> PRIME_EDIT LPAREN arguments . RPAREN
+
+    RPAREN          shift and go to state 16
+
+
+state 12
+
+    (7) arguments -> argument .
+    (8) arguments -> argument . COMMA arguments
+
+    RPAREN          reduce using rule 7 (arguments -> argument .)
+    COMMA           shift and go to state 17
+
+
+state 13
+
+    (9) argument -> ID . EQUALS ID
+
+    EQUALS          shift and go to state 18
+
+
+state 14
+
+    (5) base_edit -> BASE_EDIT LPAREN arguments . RPAREN
+
+    RPAREN          shift and go to state 19
+
+
+state 15
+
+    (6) prime_del -> PRIME_DEL LPAREN arguments . RPAREN
+
+    RPAREN          shift and go to state 20
+
+
+state 16
+
+    (4) prime_edit -> PRIME_EDIT LPAREN arguments RPAREN .
+
+    $end            reduce using rule 4 (prime_edit -> PRIME_EDIT LPAREN arguments RPAREN .)
+
+
+state 17
+
+    (8) arguments -> argument COMMA . arguments
+    (7) arguments -> . argument
+    (8) arguments -> . argument COMMA arguments
+    (9) argument -> . ID EQUALS ID
+
+    ID              shift and go to state 13
+
+    argument                       shift and go to state 12
+    arguments                      shift and go to state 21
+
+state 18
+
+    (9) argument -> ID EQUALS . ID
+
+    ID              shift and go to state 22
+
+
+state 19
+
+    (5) base_edit -> BASE_EDIT LPAREN arguments RPAREN .
+
+    $end            reduce using rule 5 (base_edit -> BASE_EDIT LPAREN arguments RPAREN .)
+
+
+state 20
+
+    (6) prime_del -> PRIME_DEL LPAREN arguments RPAREN .
+
+    $end            reduce using rule 6 (prime_del -> PRIME_DEL LPAREN arguments RPAREN .)
+
+
+state 21
+
+    (8) arguments -> argument COMMA arguments .
+
+    RPAREN          reduce using rule 8 (arguments -> argument COMMA arguments .)
+
+
+state 22
+
+    (9) argument -> ID EQUALS ID .
+
+    COMMA           reduce using rule 9 (argument -> ID EQUALS ID .)
+    RPAREN          reduce using rule 9 (argument -> ID EQUALS ID .)
+
