@@ -202,3 +202,23 @@ Esto permite representar técnicas modernas de edición genética como prime editin
 - `translate_lstm.py`: modelo stub para eficiencia de traducción.
 - Documentación: ver `docs/variant_effects_integration.md`.
 
+## ?? GFL Exporter Test Example
+
+You can test the export of genetic nodes to GFL format using the following example:
+
+### Example usage:
+
+`bash
+python examples/test_export_gfl.py
+`
+
+### Output example:
+
+`
+genetic_technique {
+    name = \"CRISPR\"
+    components = [\"Cas9\", \"sgRNA\"]
+    mechanism = \"DSB repair\"
+}
+`
+
