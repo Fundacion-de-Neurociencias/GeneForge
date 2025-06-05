@@ -1,26 +1,14 @@
-﻿# gf/schema.py
-
-NODE_SCHEMAS = {
+﻿SCHEMAS = {
     "gene_edit": {
         "required": ["type", "target_gene"],
-        "types": {
-            "type": str,
-            "target_gene": str
-        }
+        "optional": []
     },
     "construct": {
         "required": ["name", "elements"],
-        "types": {
-            "name": str,
-            "elements": list
-        }
+        "optional": []
     },
-    "logic_node": {
+    "enhanced_construct": {
         "required": [],
-        "types": {
-            "flag": bool,
-            "debug": bool,
-            "fallback": type(None)
-        }
+        "optional": ["marker", "promoter"]
     }
 }
