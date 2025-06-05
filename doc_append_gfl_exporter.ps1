@@ -17,4 +17,3 @@ genetic_technique {
     mechanism = "DSB repair"
 }
 ``
-
