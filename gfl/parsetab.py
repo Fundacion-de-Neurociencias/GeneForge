@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'EQUALS IDENTIFIER LBRACE RBRACE STRINGprogram : statementsstatements : statements statementstatements : statementstatement : IDENTIFIER LBRACE attributes RBRACEattributes : attributes attributeattributes : attributeattribute : IDENTIFIER EQUALS STRING'
+_lr_signature = 'AITOOL APPLICATION EQUALS ETHICS ID LBRACE MENDEL MITOGENE PIRNA RBRACE RETROVIRUS STRING TECHNIQUE TRANSPOSONcode : block_listblock_list : block block_list\n| blockblock : PIRNA LBRACE kvs RBRACE\n| TRANSPOSON LBRACE kvs RBRACE\n| RETROVIRUS LBRACE kvs RBRACE\n| MITOGENE LBRACE kvs RBRACE\n| MENDEL LBRACE kvs RBRACE\n| TECHNIQUE LBRACE kvs RBRACE\n| APPLICATION LBRACE kvs RBRACE\n| AITOOL LBRACE kvs RBRACE\n| ETHICS LBRACE kvs RBRACEkvs : kv kvs\n| kvkv : ID EQUALS STRING'
     
-_lr_action_items = {'IDENTIFIER':([0,2,3,5,6,8,9,11,12,13,],[4,4,-3,-2,7,7,-6,-4,-5,-7,]),'$end':([1,2,3,5,11,],[0,-1,-3,-2,-4,]),'LBRACE':([4,],[6,]),'EQUALS':([7,],[10,]),'RBRACE':([8,9,12,13,],[11,-6,-5,-7,]),'STRING':([10,],[13,]),}
+_lr_action_items = {'PIRNA':([0,3,34,37,38,39,40,41,42,43,44,],[4,4,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'TRANSPOSON':([0,3,34,37,38,39,40,41,42,43,44,],[5,5,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'RETROVIRUS':([0,3,34,37,38,39,40,41,42,43,44,],[6,6,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'MITOGENE':([0,3,34,37,38,39,40,41,42,43,44,],[7,7,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'MENDEL':([0,3,34,37,38,39,40,41,42,43,44,],[8,8,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'TECHNIQUE':([0,3,34,37,38,39,40,41,42,43,44,],[9,9,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'APPLICATION':([0,3,34,37,38,39,40,41,42,43,44,],[10,10,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'AITOOL':([0,3,34,37,38,39,40,41,42,43,44,],[11,11,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'ETHICS':([0,3,34,37,38,39,40,41,42,43,44,],[12,12,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'$end':([1,2,3,13,34,37,38,39,40,41,42,43,44,],[0,-1,-3,-2,-4,-5,-6,-7,-8,-9,-10,-11,-12,]),'LBRACE':([4,5,6,7,8,9,10,11,12,],[14,15,16,17,18,19,20,21,22,]),'ID':([14,15,16,17,18,19,20,21,22,24,45,],[25,25,25,25,25,25,25,25,25,25,-15,]),'RBRACE':([23,24,26,27,28,29,30,31,32,33,35,45,],[34,-14,37,38,39,40,41,42,43,44,-13,-15,]),'EQUALS':([25,],[36,]),'STRING':([36,],[45,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'statements':([0,],[2,]),'statement':([0,2,],[3,5,]),'attributes':([6,],[8,]),'attribute':([6,8,],[9,12,]),}
+_lr_goto_items = {'code':([0,],[1,]),'block_list':([0,3,],[2,13,]),'block':([0,3,],[3,3,]),'kvs':([14,15,16,17,18,19,20,21,22,24,],[23,26,27,28,29,30,31,32,33,35,]),'kv':([14,15,16,17,18,19,20,21,22,24,],[24,24,24,24,24,24,24,24,24,24,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,12 +26,20 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> program","S'",1,None,None,None),
-  ('program -> statements','program',1,'p_program','parser.py',5),
-  ('statements -> statements statement','statements',2,'p_statements_multiple','parser.py',9),
-  ('statements -> statement','statements',1,'p_statements_single','parser.py',13),
-  ('statement -> IDENTIFIER LBRACE attributes RBRACE','statement',4,'p_statement','parser.py',17),
-  ('attributes -> attributes attribute','attributes',2,'p_attributes_multiple','parser.py',21),
-  ('attributes -> attribute','attributes',1,'p_attributes_single','parser.py',25),
-  ('attribute -> IDENTIFIER EQUALS STRING','attribute',3,'p_attribute','parser.py',29),
+  ("S' -> code","S'",1,None,None,None),
+  ('code -> block_list','code',1,'p_code','parser.py',5),
+  ('block_list -> block block_list','block_list',2,'p_block_list','parser.py',9),
+  ('block_list -> block','block_list',1,'p_block_list','parser.py',10),
+  ('block -> PIRNA LBRACE kvs RBRACE','block',4,'p_block','parser.py',14),
+  ('block -> TRANSPOSON LBRACE kvs RBRACE','block',4,'p_block','parser.py',15),
+  ('block -> RETROVIRUS LBRACE kvs RBRACE','block',4,'p_block','parser.py',16),
+  ('block -> MITOGENE LBRACE kvs RBRACE','block',4,'p_block','parser.py',17),
+  ('block -> MENDEL LBRACE kvs RBRACE','block',4,'p_block','parser.py',18),
+  ('block -> TECHNIQUE LBRACE kvs RBRACE','block',4,'p_block','parser.py',19),
+  ('block -> APPLICATION LBRACE kvs RBRACE','block',4,'p_block','parser.py',20),
+  ('block -> AITOOL LBRACE kvs RBRACE','block',4,'p_block','parser.py',21),
+  ('block -> ETHICS LBRACE kvs RBRACE','block',4,'p_block','parser.py',22),
+  ('kvs -> kv kvs','kvs',2,'p_kvs','parser.py',26),
+  ('kvs -> kv','kvs',1,'p_kvs','parser.py',27),
+  ('kv -> ID EQUALS STRING','kv',3,'p_kv','parser.py',31),
 ]

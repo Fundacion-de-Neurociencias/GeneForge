@@ -2,153 +2,548 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Grammar
 
-Rule 0     S' -> program
-Rule 1     program -> statements
-Rule 2     statements -> statements statement
-Rule 3     statements -> statement
-Rule 4     statement -> IDENTIFIER LBRACE attributes RBRACE
-Rule 5     attributes -> attributes attribute
-Rule 6     attributes -> attribute
-Rule 7     attribute -> IDENTIFIER EQUALS STRING
+Rule 0     S' -> code
+Rule 1     code -> block_list
+Rule 2     block_list -> block block_list
+Rule 3     block_list -> block
+Rule 4     block -> PIRNA LBRACE kvs RBRACE
+Rule 5     block -> TRANSPOSON LBRACE kvs RBRACE
+Rule 6     block -> RETROVIRUS LBRACE kvs RBRACE
+Rule 7     block -> MITOGENE LBRACE kvs RBRACE
+Rule 8     block -> MENDEL LBRACE kvs RBRACE
+Rule 9     block -> TECHNIQUE LBRACE kvs RBRACE
+Rule 10    block -> APPLICATION LBRACE kvs RBRACE
+Rule 11    block -> AITOOL LBRACE kvs RBRACE
+Rule 12    block -> ETHICS LBRACE kvs RBRACE
+Rule 13    kvs -> kv kvs
+Rule 14    kvs -> kv
+Rule 15    kv -> ID EQUALS STRING
 
 Terminals, with rules where they appear
 
-EQUALS               : 7
-IDENTIFIER           : 4 7
-LBRACE               : 4
-RBRACE               : 4
-STRING               : 7
+AITOOL               : 11
+APPLICATION          : 10
+EQUALS               : 15
+ETHICS               : 12
+ID                   : 15
+LBRACE               : 4 5 6 7 8 9 10 11 12
+MENDEL               : 8
+MITOGENE             : 7
+PIRNA                : 4
+RBRACE               : 4 5 6 7 8 9 10 11 12
+RETROVIRUS           : 6
+STRING               : 15
+TECHNIQUE            : 9
+TRANSPOSON           : 5
 error                : 
 
 Nonterminals, with rules where they appear
 
-attribute            : 5 6
-attributes           : 4 5
-program              : 0
-statement            : 2 3
-statements           : 1 2
+block                : 2 3
+block_list           : 1 2
+code                 : 0
+kv                   : 13 14
+kvs                  : 4 5 6 7 8 9 10 11 12 13
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . program
-    (1) program -> . statements
-    (2) statements -> . statements statement
-    (3) statements -> . statement
-    (4) statement -> . IDENTIFIER LBRACE attributes RBRACE
+    (0) S' -> . code
+    (1) code -> . block_list
+    (2) block_list -> . block block_list
+    (3) block_list -> . block
+    (4) block -> . PIRNA LBRACE kvs RBRACE
+    (5) block -> . TRANSPOSON LBRACE kvs RBRACE
+    (6) block -> . RETROVIRUS LBRACE kvs RBRACE
+    (7) block -> . MITOGENE LBRACE kvs RBRACE
+    (8) block -> . MENDEL LBRACE kvs RBRACE
+    (9) block -> . TECHNIQUE LBRACE kvs RBRACE
+    (10) block -> . APPLICATION LBRACE kvs RBRACE
+    (11) block -> . AITOOL LBRACE kvs RBRACE
+    (12) block -> . ETHICS LBRACE kvs RBRACE
 
-    IDENTIFIER      shift and go to state 4
+    PIRNA           shift and go to state 4
+    TRANSPOSON      shift and go to state 5
+    RETROVIRUS      shift and go to state 6
+    MITOGENE        shift and go to state 7
+    MENDEL          shift and go to state 8
+    TECHNIQUE       shift and go to state 9
+    APPLICATION     shift and go to state 10
+    AITOOL          shift and go to state 11
+    ETHICS          shift and go to state 12
 
-    program                        shift and go to state 1
-    statements                     shift and go to state 2
-    statement                      shift and go to state 3
+    code                           shift and go to state 1
+    block_list                     shift and go to state 2
+    block                          shift and go to state 3
 
 state 1
 
-    (0) S' -> program .
+    (0) S' -> code .
 
 
 
 state 2
 
-    (1) program -> statements .
-    (2) statements -> statements . statement
-    (4) statement -> . IDENTIFIER LBRACE attributes RBRACE
+    (1) code -> block_list .
 
-    $end            reduce using rule 1 (program -> statements .)
-    IDENTIFIER      shift and go to state 4
+    $end            reduce using rule 1 (code -> block_list .)
 
-    statement                      shift and go to state 5
 
 state 3
 
-    (3) statements -> statement .
+    (2) block_list -> block . block_list
+    (3) block_list -> block .
+    (2) block_list -> . block block_list
+    (3) block_list -> . block
+    (4) block -> . PIRNA LBRACE kvs RBRACE
+    (5) block -> . TRANSPOSON LBRACE kvs RBRACE
+    (6) block -> . RETROVIRUS LBRACE kvs RBRACE
+    (7) block -> . MITOGENE LBRACE kvs RBRACE
+    (8) block -> . MENDEL LBRACE kvs RBRACE
+    (9) block -> . TECHNIQUE LBRACE kvs RBRACE
+    (10) block -> . APPLICATION LBRACE kvs RBRACE
+    (11) block -> . AITOOL LBRACE kvs RBRACE
+    (12) block -> . ETHICS LBRACE kvs RBRACE
 
-    IDENTIFIER      reduce using rule 3 (statements -> statement .)
-    $end            reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (block_list -> block .)
+    PIRNA           shift and go to state 4
+    TRANSPOSON      shift and go to state 5
+    RETROVIRUS      shift and go to state 6
+    MITOGENE        shift and go to state 7
+    MENDEL          shift and go to state 8
+    TECHNIQUE       shift and go to state 9
+    APPLICATION     shift and go to state 10
+    AITOOL          shift and go to state 11
+    ETHICS          shift and go to state 12
 
+    block                          shift and go to state 3
+    block_list                     shift and go to state 13
 
 state 4
 
-    (4) statement -> IDENTIFIER . LBRACE attributes RBRACE
+    (4) block -> PIRNA . LBRACE kvs RBRACE
 
-    LBRACE          shift and go to state 6
+    LBRACE          shift and go to state 14
 
 
 state 5
 
-    (2) statements -> statements statement .
+    (5) block -> TRANSPOSON . LBRACE kvs RBRACE
 
-    IDENTIFIER      reduce using rule 2 (statements -> statements statement .)
-    $end            reduce using rule 2 (statements -> statements statement .)
+    LBRACE          shift and go to state 15
 
 
 state 6
 
-    (4) statement -> IDENTIFIER LBRACE . attributes RBRACE
-    (5) attributes -> . attributes attribute
-    (6) attributes -> . attribute
-    (7) attribute -> . IDENTIFIER EQUALS STRING
+    (6) block -> RETROVIRUS . LBRACE kvs RBRACE
 
-    IDENTIFIER      shift and go to state 7
+    LBRACE          shift and go to state 16
 
-    attributes                     shift and go to state 8
-    attribute                      shift and go to state 9
 
 state 7
 
-    (7) attribute -> IDENTIFIER . EQUALS STRING
+    (7) block -> MITOGENE . LBRACE kvs RBRACE
 
-    EQUALS          shift and go to state 10
+    LBRACE          shift and go to state 17
 
 
 state 8
 
-    (4) statement -> IDENTIFIER LBRACE attributes . RBRACE
-    (5) attributes -> attributes . attribute
-    (7) attribute -> . IDENTIFIER EQUALS STRING
+    (8) block -> MENDEL . LBRACE kvs RBRACE
 
-    RBRACE          shift and go to state 11
-    IDENTIFIER      shift and go to state 7
+    LBRACE          shift and go to state 18
 
-    attribute                      shift and go to state 12
 
 state 9
 
-    (6) attributes -> attribute .
+    (9) block -> TECHNIQUE . LBRACE kvs RBRACE
 
-    RBRACE          reduce using rule 6 (attributes -> attribute .)
-    IDENTIFIER      reduce using rule 6 (attributes -> attribute .)
+    LBRACE          shift and go to state 19
 
 
 state 10
 
-    (7) attribute -> IDENTIFIER EQUALS . STRING
+    (10) block -> APPLICATION . LBRACE kvs RBRACE
 
-    STRING          shift and go to state 13
+    LBRACE          shift and go to state 20
 
 
 state 11
 
-    (4) statement -> IDENTIFIER LBRACE attributes RBRACE .
+    (11) block -> AITOOL . LBRACE kvs RBRACE
 
-    IDENTIFIER      reduce using rule 4 (statement -> IDENTIFIER LBRACE attributes RBRACE .)
-    $end            reduce using rule 4 (statement -> IDENTIFIER LBRACE attributes RBRACE .)
+    LBRACE          shift and go to state 21
 
 
 state 12
 
-    (5) attributes -> attributes attribute .
+    (12) block -> ETHICS . LBRACE kvs RBRACE
 
-    RBRACE          reduce using rule 5 (attributes -> attributes attribute .)
-    IDENTIFIER      reduce using rule 5 (attributes -> attributes attribute .)
+    LBRACE          shift and go to state 22
 
 
 state 13
 
-    (7) attribute -> IDENTIFIER EQUALS STRING .
+    (2) block_list -> block block_list .
 
-    RBRACE          reduce using rule 7 (attribute -> IDENTIFIER EQUALS STRING .)
-    IDENTIFIER      reduce using rule 7 (attribute -> IDENTIFIER EQUALS STRING .)
+    $end            reduce using rule 2 (block_list -> block block_list .)
+
+
+state 14
+
+    (4) block -> PIRNA LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 23
+    kv                             shift and go to state 24
+
+state 15
+
+    (5) block -> TRANSPOSON LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 26
+    kv                             shift and go to state 24
+
+state 16
+
+    (6) block -> RETROVIRUS LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 27
+    kv                             shift and go to state 24
+
+state 17
+
+    (7) block -> MITOGENE LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 28
+    kv                             shift and go to state 24
+
+state 18
+
+    (8) block -> MENDEL LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 29
+    kv                             shift and go to state 24
+
+state 19
+
+    (9) block -> TECHNIQUE LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 30
+    kv                             shift and go to state 24
+
+state 20
+
+    (10) block -> APPLICATION LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 31
+    kv                             shift and go to state 24
+
+state 21
+
+    (11) block -> AITOOL LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 32
+    kv                             shift and go to state 24
+
+state 22
+
+    (12) block -> ETHICS LBRACE . kvs RBRACE
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    ID              shift and go to state 25
+
+    kvs                            shift and go to state 33
+    kv                             shift and go to state 24
+
+state 23
+
+    (4) block -> PIRNA LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 34
+
+
+state 24
+
+    (13) kvs -> kv . kvs
+    (14) kvs -> kv .
+    (13) kvs -> . kv kvs
+    (14) kvs -> . kv
+    (15) kv -> . ID EQUALS STRING
+
+    RBRACE          reduce using rule 14 (kvs -> kv .)
+    ID              shift and go to state 25
+
+    kv                             shift and go to state 24
+    kvs                            shift and go to state 35
+
+state 25
+
+    (15) kv -> ID . EQUALS STRING
+
+    EQUALS          shift and go to state 36
+
+
+state 26
+
+    (5) block -> TRANSPOSON LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 37
+
+
+state 27
+
+    (6) block -> RETROVIRUS LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 38
+
+
+state 28
+
+    (7) block -> MITOGENE LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 39
+
+
+state 29
+
+    (8) block -> MENDEL LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 40
+
+
+state 30
+
+    (9) block -> TECHNIQUE LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 41
+
+
+state 31
+
+    (10) block -> APPLICATION LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 42
+
+
+state 32
+
+    (11) block -> AITOOL LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 43
+
+
+state 33
+
+    (12) block -> ETHICS LBRACE kvs . RBRACE
+
+    RBRACE          shift and go to state 44
+
+
+state 34
+
+    (4) block -> PIRNA LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+    $end            reduce using rule 4 (block -> PIRNA LBRACE kvs RBRACE .)
+
+
+state 35
+
+    (13) kvs -> kv kvs .
+
+    RBRACE          reduce using rule 13 (kvs -> kv kvs .)
+
+
+state 36
+
+    (15) kv -> ID EQUALS . STRING
+
+    STRING          shift and go to state 45
+
+
+state 37
+
+    (5) block -> TRANSPOSON LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+    $end            reduce using rule 5 (block -> TRANSPOSON LBRACE kvs RBRACE .)
+
+
+state 38
+
+    (6) block -> RETROVIRUS LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+    $end            reduce using rule 6 (block -> RETROVIRUS LBRACE kvs RBRACE .)
+
+
+state 39
+
+    (7) block -> MITOGENE LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+    $end            reduce using rule 7 (block -> MITOGENE LBRACE kvs RBRACE .)
+
+
+state 40
+
+    (8) block -> MENDEL LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+    $end            reduce using rule 8 (block -> MENDEL LBRACE kvs RBRACE .)
+
+
+state 41
+
+    (9) block -> TECHNIQUE LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+    $end            reduce using rule 9 (block -> TECHNIQUE LBRACE kvs RBRACE .)
+
+
+state 42
+
+    (10) block -> APPLICATION LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+    $end            reduce using rule 10 (block -> APPLICATION LBRACE kvs RBRACE .)
+
+
+state 43
+
+    (11) block -> AITOOL LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+    $end            reduce using rule 11 (block -> AITOOL LBRACE kvs RBRACE .)
+
+
+state 44
+
+    (12) block -> ETHICS LBRACE kvs RBRACE .
+
+    PIRNA           reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    TRANSPOSON      reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    RETROVIRUS      reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    MITOGENE        reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    MENDEL          reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    TECHNIQUE       reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    APPLICATION     reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    AITOOL          reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    ETHICS          reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+    $end            reduce using rule 12 (block -> ETHICS LBRACE kvs RBRACE .)
+
+
+state 45
+
+    (15) kv -> ID EQUALS STRING .
+
+    ID              reduce using rule 15 (kv -> ID EQUALS STRING .)
+    RBRACE          reduce using rule 15 (kv -> ID EQUALS STRING .)
 
