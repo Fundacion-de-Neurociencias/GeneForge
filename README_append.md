@@ -4,12 +4,10 @@ This script demonstrates how to define and roundtrip a custom node class using t
 
 ### Example usage:
 
-```bash
 python examples/test_custom_nodes_gfl.py
-Sample output:
-csharp
-Copiar
-Editar
+
+### Sample output:
+
 🔁 Exported GFL:
 
 my_custom_node {
