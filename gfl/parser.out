@@ -1,245 +1,154 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    MINUS
-    NUMBER
-    PEG
-    PLUS
-    STRING
-
 Grammar
 
-Rule 0     S' -> statement
-Rule 1     statement -> prime_edit
-Rule 2     statement -> base_edit
-Rule 3     statement -> prime_del
-Rule 4     prime_edit -> PRIME_EDIT LPAREN arguments RPAREN
-Rule 5     base_edit -> BASE_EDIT LPAREN arguments RPAREN
-Rule 6     prime_del -> PRIME_DEL LPAREN arguments RPAREN
-Rule 7     arguments -> argument
-Rule 8     arguments -> argument COMMA arguments
-Rule 9     argument -> ID EQUALS ID
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> IDENTIFIER LBRACE attributes RBRACE
+Rule 5     attributes -> attributes attribute
+Rule 6     attributes -> attribute
+Rule 7     attribute -> IDENTIFIER EQUALS STRING
 
 Terminals, with rules where they appear
 
-BASE_EDIT            : 5
-COMMA                : 8
-EQUALS               : 9
-ID                   : 9 9
-LPAREN               : 4 5 6
-MINUS                : 
-NUMBER               : 
-PEG                  : 
-PLUS                 : 
-PRIME_DEL            : 6
-PRIME_EDIT           : 4
-RPAREN               : 4 5 6
-STRING               : 
+EQUALS               : 7
+IDENTIFIER           : 4 7
+LBRACE               : 4
+RBRACE               : 4
+STRING               : 7
 error                : 
 
 Nonterminals, with rules where they appear
 
-argument             : 7 8
-arguments            : 4 5 6 8
-base_edit            : 2
-prime_del            : 3
-prime_edit           : 1
-statement            : 0
+attribute            : 5 6
+attributes           : 4 5
+program              : 0
+statement            : 2 3
+statements           : 1 2
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . statement
-    (1) statement -> . prime_edit
-    (2) statement -> . base_edit
-    (3) statement -> . prime_del
-    (4) prime_edit -> . PRIME_EDIT LPAREN arguments RPAREN
-    (5) base_edit -> . BASE_EDIT LPAREN arguments RPAREN
-    (6) prime_del -> . PRIME_DEL LPAREN arguments RPAREN
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . IDENTIFIER LBRACE attributes RBRACE
 
-    PRIME_EDIT      shift and go to state 5
-    BASE_EDIT       shift and go to state 6
-    PRIME_DEL       shift and go to state 7
+    IDENTIFIER      shift and go to state 4
 
-    statement                      shift and go to state 1
-    prime_edit                     shift and go to state 2
-    base_edit                      shift and go to state 3
-    prime_del                      shift and go to state 4
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
 
 state 1
 
-    (0) S' -> statement .
+    (0) S' -> program .
 
 
 
 state 2
 
-    (1) statement -> prime_edit .
+    (1) program -> statements .
+    (2) statements -> statements . statement
+    (4) statement -> . IDENTIFIER LBRACE attributes RBRACE
 
-    $end            reduce using rule 1 (statement -> prime_edit .)
+    $end            reduce using rule 1 (program -> statements .)
+    IDENTIFIER      shift and go to state 4
 
+    statement                      shift and go to state 5
 
 state 3
 
-    (2) statement -> base_edit .
+    (3) statements -> statement .
 
-    $end            reduce using rule 2 (statement -> base_edit .)
+    IDENTIFIER      reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
 
 
 state 4
 
-    (3) statement -> prime_del .
+    (4) statement -> IDENTIFIER . LBRACE attributes RBRACE
 
-    $end            reduce using rule 3 (statement -> prime_del .)
+    LBRACE          shift and go to state 6
 
 
 state 5
 
-    (4) prime_edit -> PRIME_EDIT . LPAREN arguments RPAREN
+    (2) statements -> statements statement .
 
-    LPAREN          shift and go to state 8
+    IDENTIFIER      reduce using rule 2 (statements -> statements statement .)
+    $end            reduce using rule 2 (statements -> statements statement .)
 
 
 state 6
 
-    (5) base_edit -> BASE_EDIT . LPAREN arguments RPAREN
+    (4) statement -> IDENTIFIER LBRACE . attributes RBRACE
+    (5) attributes -> . attributes attribute
+    (6) attributes -> . attribute
+    (7) attribute -> . IDENTIFIER EQUALS STRING
 
-    LPAREN          shift and go to state 9
+    IDENTIFIER      shift and go to state 7
 
+    attributes                     shift and go to state 8
+    attribute                      shift and go to state 9
 
 state 7
 
-    (6) prime_del -> PRIME_DEL . LPAREN arguments RPAREN
+    (7) attribute -> IDENTIFIER . EQUALS STRING
 
-    LPAREN          shift and go to state 10
+    EQUALS          shift and go to state 10
 
 
 state 8
 
-    (4) prime_edit -> PRIME_EDIT LPAREN . arguments RPAREN
-    (7) arguments -> . argument
-    (8) arguments -> . argument COMMA arguments
-    (9) argument -> . ID EQUALS ID
+    (4) statement -> IDENTIFIER LBRACE attributes . RBRACE
+    (5) attributes -> attributes . attribute
+    (7) attribute -> . IDENTIFIER EQUALS STRING
 
-    ID              shift and go to state 13
+    RBRACE          shift and go to state 11
+    IDENTIFIER      shift and go to state 7
 
-    arguments                      shift and go to state 11
-    argument                       shift and go to state 12
+    attribute                      shift and go to state 12
 
 state 9
 
-    (5) base_edit -> BASE_EDIT LPAREN . arguments RPAREN
-    (7) arguments -> . argument
-    (8) arguments -> . argument COMMA arguments
-    (9) argument -> . ID EQUALS ID
+    (6) attributes -> attribute .
 
-    ID              shift and go to state 13
+    RBRACE          reduce using rule 6 (attributes -> attribute .)
+    IDENTIFIER      reduce using rule 6 (attributes -> attribute .)
 
-    arguments                      shift and go to state 14
-    argument                       shift and go to state 12
 
 state 10
 
-    (6) prime_del -> PRIME_DEL LPAREN . arguments RPAREN
-    (7) arguments -> . argument
-    (8) arguments -> . argument COMMA arguments
-    (9) argument -> . ID EQUALS ID
+    (7) attribute -> IDENTIFIER EQUALS . STRING
 
-    ID              shift and go to state 13
+    STRING          shift and go to state 13
 
-    arguments                      shift and go to state 15
-    argument                       shift and go to state 12
 
 state 11
 
-    (4) prime_edit -> PRIME_EDIT LPAREN arguments . RPAREN
+    (4) statement -> IDENTIFIER LBRACE attributes RBRACE .
 
-    RPAREN          shift and go to state 16
+    IDENTIFIER      reduce using rule 4 (statement -> IDENTIFIER LBRACE attributes RBRACE .)
+    $end            reduce using rule 4 (statement -> IDENTIFIER LBRACE attributes RBRACE .)
 
 
 state 12
 
-    (7) arguments -> argument .
-    (8) arguments -> argument . COMMA arguments
+    (5) attributes -> attributes attribute .
 
-    RPAREN          reduce using rule 7 (arguments -> argument .)
-    COMMA           shift and go to state 17
+    RBRACE          reduce using rule 5 (attributes -> attributes attribute .)
+    IDENTIFIER      reduce using rule 5 (attributes -> attributes attribute .)
 
 
 state 13
 
-    (9) argument -> ID . EQUALS ID
+    (7) attribute -> IDENTIFIER EQUALS STRING .
 
-    EQUALS          shift and go to state 18
-
-
-state 14
-
-    (5) base_edit -> BASE_EDIT LPAREN arguments . RPAREN
-
-    RPAREN          shift and go to state 19
-
-
-state 15
-
-    (6) prime_del -> PRIME_DEL LPAREN arguments . RPAREN
-
-    RPAREN          shift and go to state 20
-
-
-state 16
-
-    (4) prime_edit -> PRIME_EDIT LPAREN arguments RPAREN .
-
-    $end            reduce using rule 4 (prime_edit -> PRIME_EDIT LPAREN arguments RPAREN .)
-
-
-state 17
-
-    (8) arguments -> argument COMMA . arguments
-    (7) arguments -> . argument
-    (8) arguments -> . argument COMMA arguments
-    (9) argument -> . ID EQUALS ID
-
-    ID              shift and go to state 13
-
-    argument                       shift and go to state 12
-    arguments                      shift and go to state 21
-
-state 18
-
-    (9) argument -> ID EQUALS . ID
-
-    ID              shift and go to state 22
-
-
-state 19
-
-    (5) base_edit -> BASE_EDIT LPAREN arguments RPAREN .
-
-    $end            reduce using rule 5 (base_edit -> BASE_EDIT LPAREN arguments RPAREN .)
-
-
-state 20
-
-    (6) prime_del -> PRIME_DEL LPAREN arguments RPAREN .
-
-    $end            reduce using rule 6 (prime_del -> PRIME_DEL LPAREN arguments RPAREN .)
-
-
-state 21
-
-    (8) arguments -> argument COMMA arguments .
-
-    RPAREN          reduce using rule 8 (arguments -> argument COMMA arguments .)
-
-
-state 22
-
-    (9) argument -> ID EQUALS ID .
-
-    COMMA           reduce using rule 9 (argument -> ID EQUALS ID .)
-    RPAREN          reduce using rule 9 (argument -> ID EQUALS ID .)
+    RBRACE          reduce using rule 7 (attribute -> IDENTIFIER EQUALS STRING .)
+    IDENTIFIER      reduce using rule 7 (attribute -> IDENTIFIER EQUALS STRING .)
 

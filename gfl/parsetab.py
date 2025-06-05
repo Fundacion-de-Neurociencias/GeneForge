@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BASE_EDIT COMMA EQUALS ID LPAREN MINUS NUMBER PEG PLUS PRIME_DEL PRIME_EDIT RPAREN STRINGstatement : prime_edit\n| base_edit\n| prime_delprime_edit : PRIME_EDIT LPAREN arguments RPARENbase_edit : BASE_EDIT LPAREN arguments RPARENprime_del : PRIME_DEL LPAREN arguments RPARENarguments : argument\n| argument COMMA argumentsargument : ID EQUALS ID'
+_lr_signature = 'EQUALS IDENTIFIER LBRACE RBRACE STRINGprogram : statementsstatements : statements statementstatements : statementstatement : IDENTIFIER LBRACE attributes RBRACEattributes : attributes attributeattributes : attributeattribute : IDENTIFIER EQUALS STRING'
     
-_lr_action_items = {'PRIME_EDIT':([0,],[5,]),'BASE_EDIT':([0,],[6,]),'PRIME_DEL':([0,],[7,]),'$end':([1,2,3,4,16,19,20,],[0,-1,-2,-3,-4,-5,-6,]),'LPAREN':([5,6,7,],[8,9,10,]),'ID':([8,9,10,17,18,],[13,13,13,13,22,]),'RPAREN':([11,12,14,15,21,22,],[16,-7,19,20,-8,-9,]),'COMMA':([12,22,],[17,-9,]),'EQUALS':([13,],[18,]),}
+_lr_action_items = {'IDENTIFIER':([0,2,3,5,6,8,9,11,12,13,],[4,4,-3,-2,7,7,-6,-4,-5,-7,]),'$end':([1,2,3,5,11,],[0,-1,-3,-2,-4,]),'LBRACE':([4,],[6,]),'EQUALS':([7,],[10,]),'RBRACE':([8,9,12,13,],[11,-6,-5,-7,]),'STRING':([10,],[13,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'prime_edit':([0,],[2,]),'base_edit':([0,],[3,]),'prime_del':([0,],[4,]),'arguments':([8,9,10,17,],[11,14,15,21,]),'argument':([8,9,10,17,],[12,12,12,12,]),}
+_lr_goto_items = {'program':([0,],[1,]),'statements':([0,],[2,]),'statement':([0,2,],[3,5,]),'attributes':([6,],[8,]),'attribute':([6,8,],[9,12,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,14 +26,12 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> statement","S'",1,None,None,None),
-  ('statement -> prime_edit','statement',1,'p_statement_expr','parser.py',5),
-  ('statement -> base_edit','statement',1,'p_statement_expr','parser.py',6),
-  ('statement -> prime_del','statement',1,'p_statement_expr','parser.py',7),
-  ('prime_edit -> PRIME_EDIT LPAREN arguments RPAREN','prime_edit',4,'p_prime_edit','parser.py',11),
-  ('base_edit -> BASE_EDIT LPAREN arguments RPAREN','base_edit',4,'p_base_edit','parser.py',15),
-  ('prime_del -> PRIME_DEL LPAREN arguments RPAREN','prime_del',4,'p_prime_del','parser.py',19),
-  ('arguments -> argument','arguments',1,'p_arguments','parser.py',23),
-  ('arguments -> argument COMMA arguments','arguments',3,'p_arguments','parser.py',24),
-  ('argument -> ID EQUALS ID','argument',3,'p_argument','parser.py',31),
+  ("S' -> program","S'",1,None,None,None),
+  ('program -> statements','program',1,'p_program','parser.py',5),
+  ('statements -> statements statement','statements',2,'p_statements_multiple','parser.py',9),
+  ('statements -> statement','statements',1,'p_statements_single','parser.py',13),
+  ('statement -> IDENTIFIER LBRACE attributes RBRACE','statement',4,'p_statement','parser.py',17),
+  ('attributes -> attributes attribute','attributes',2,'p_attributes_multiple','parser.py',21),
+  ('attributes -> attribute','attributes',1,'p_attributes_single','parser.py',25),
+  ('attribute -> IDENTIFIER EQUALS STRING','attribute',3,'p_attribute','parser.py',29),
 ]
