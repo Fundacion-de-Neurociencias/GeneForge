@@ -6,7 +6,8 @@ path = 'examples/test_extended_semantics.gfl'
 try:
     ast = load_gfl_file(path)
     print('✅ Nodes parsed and validated:\n')
-    for node in ast:
+    for item in ast:
+        node = item[1] if isinstance(item, tuple) else item
         print(f'🔹 {node.type} - {node.attrs}')
 except Exception as e:
     print(f'❌ Error: {e}')
