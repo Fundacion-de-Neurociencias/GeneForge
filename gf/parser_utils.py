@@ -22,3 +22,7 @@ def build_ast(parsed_tokens):
         converted_attrs = {k: _convert_value(v) for k, v in raw_attrs.items()}
         nodes.append(Node(type=node_type, attrs=converted_attrs))
     return nodes
+
+def parse_tokens(tokens):
+    # Por ahora se asume que 'tokens' ya es una lista de nodos simulados (fase mock)
+    return tokens
