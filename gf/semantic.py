@@ -4,5 +4,5 @@
         ast = [ast]
     for node in ast:
         if not hasattr(node, 'type') or not hasattr(node, 'attrs'):
-            raise ValueError(f\"Invalid node: {node}\")
+            raise ValueError(f"Invalid node: {node}")
     return ast
