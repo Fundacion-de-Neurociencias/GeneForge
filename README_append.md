@@ -1,31 +1,24 @@
-﻿## 🧪 GFL Parser Edge Case Test
+﻿## 🧪 GFL Custom Node Test
 
-This script checks how the GFL parser handles edge cases such as missing attributes, booleans, null values, and syntax errors.
+This script demonstrates how to define and roundtrip a custom node class using the GFL format.
 
 ### Example usage:
 
 ```bash
-python examples/test_edge_cases_gfl.py
+python examples/test_custom_nodes_gfl.py
 Sample output:
-pgsql
+csharp
 Copiar
 Editar
-🔍 Case 1:
-empty_node { }
-----------------------------------------
+🔁 Exported GFL:
 
-🔍 Case 2:
-incomplete_node { key = }
-----------------------------------------
+my_custom_node {
+    label = "test_node"
+    params = {"x": 1, "y": 2}
+}
 
-🔍 Case 3:
-logic_node { flag = true, debug = false, fallback = null }
-----------------------------------------
+🔁 Re-importing...
 
-🔍 Case 4:
-list_node { items = [] }
-----------------------------------------
+✅ Parsed node:
 
-🔍 Case 5:
-bad_syntax_node { key == "value" }
-----------------------------------------
+🔹 my_custom_node - {'label': 'test_node', 'params': {'x': 1, 'y': 2}}
