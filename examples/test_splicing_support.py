@@ -1,30 +1,30 @@
 ﻿from gf.gfl_import.gfl_importer import load_gfl_string
 
-code = '''
+code = \"\"\"
 splicing_event {
-    type = "exon skipping"
-    exon = "exon 3"
-    effect = "loss of function"
+    type = "alternative"
+    exons = ["exon1", "exon2", "exon3"]
+    regulators = ["SRSF1", "hnRNP"]
 }
 
 protein {
-    name = "p53"
-    domains = ["DBD", "TAD"]
-    post_translational_modifications = ["phosphorylation", "acetylation"]
+    name = "TP53"
+    domains = ["DNA-binding", "Tetramerization"]
+    modifications = ["phosphorylation", "ubiquitination"]
 }
 
 regulation {
-    regulator = "miR-21"
-    target = "PTEN"
-    type = "inhibition"
+    source = "TP53"
+    target = "MDM2"
+    effect = "repression"
 }
-'''
+\"\"\"
 
 print("🧪 Testing advanced node structures (splicing, protein, regulation)...\n")
 
 try:
-    nodes = load_gfl_string(code)
-    for node in nodes:
+    result = load_gfl_string(code)
+    for node in result:
         print(f"✅ {node.type} parsed: {node.attrs}")
 except Exception as e:
     print(f"❌ Error: {e}")
