@@ -22,8 +22,8 @@ regulation {
 print("🧪 Testing advanced node structures (splicing, protein, regulation)...\n")
 
 try:
-    result = load_gfl_string(code)
-    for node in result:
-        print(f"✅ {node.type} parsed: {node.attrs}")
+    ast = load_gfl_string(code)
+    for node in ast:
+        print(f"✅ {node['type']} parsed: {node['attrs']}")
 except Exception as e:
     print(f"❌ Error: {e}")
