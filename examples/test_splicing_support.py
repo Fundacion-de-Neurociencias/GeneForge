@@ -1,25 +1,23 @@
 ﻿from gf.gfl_import.gfl_importer import load_gfl_string
 
-code = """
+code = \"\"\"
 splicing_event {
-    gene = "TP53"
     type = "exon_skipping"
-    exon_number = 4
-    consequence = "loss_of_function"
+    exon = "exon_3"
+    context = "brain"
 }
 
 protein {
     name = "p53"
-    domains = ["DNA_binding", "oligomerization"]
-    isoelectric_point = 6.8
+    domains = ["transactivation", "DNA_binding", "oligomerization"]
 }
 
 regulation {
-    target = "BAX"
-    regulator = "p53"
-    mechanism = "transactivation"
+    target = "p53"
+    mechanism = "ubiquitination"
+    effector = "MDM2"
 }
-"""
+\"\"\"
 
 print("🧪 Testing advanced node structures (splicing, protein, regulation)...\n")
 
