@@ -1,6 +1,6 @@
 ﻿from gf.gfl_import.gfl_importer import load_gfl_string
 
-code = \"\"\"
+code = """
 splicing_event {
     type = "exon_skipping"
     exon = "exon_3"
@@ -17,7 +17,7 @@ regulation {
     mechanism = "ubiquitination"
     effector = "MDM2"
 }
-\"\"\"
+"""
 
 print("🧪 Testing advanced node structures (splicing, protein, regulation)...\n")
 
