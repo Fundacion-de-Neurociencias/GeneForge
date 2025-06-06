@@ -1,6 +1,6 @@
 ﻿from gf.gfl_import.gfl_importer import load_gfl_string
 
-code = \"\"\"
+code = """
 splicing_event {
     gene = "TP53"
     type = "exon_skipping"
@@ -19,7 +19,7 @@ regulation {
     regulator = "p53"
     mechanism = "transactivation"
 }
-\"\"\"
+"""
 
 print("🧪 Testing advanced node structures (splicing, protein, regulation)...\n")
 
