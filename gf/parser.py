@@ -1,5 +1,5 @@
-﻿def parse_code(code):
-    from gf.lexer import tokenize
-    from gf.parser_utils import parse_tokens
+﻿from gf.lexer import tokenize
+
+def parse_tokens(code: str):
     tokens = tokenize(code)
-    return parse_tokens(tokens)
+    return tokens
