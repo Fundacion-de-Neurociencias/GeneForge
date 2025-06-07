@@ -1,0 +1,45 @@
+﻿thought {
+    type: "risk"
+    attrs: {
+        val: "offtarget:0.85"
+    }
+}
+
+thought {
+    type: "repeat_edit"
+}
+
+thought {
+    type: "residue"
+    attrs: {
+        label: "ncAA"
+    }
+}
+
+thought {
+    type: "uaug"
+    attrs: {
+        frame: "1"
+    }
+}
+
+thought {
+    type: "structure"
+    attrs: {
+        ?G: "-12.5"
+    }
+}
+
+thought {
+    type: "gc_content"
+    attrs: {
+        pct: "0.72"
+    }
+}
+
+thought {
+    type: "rbp_site"
+    attrs: {
+        rbp: "Pumilio"
+    }
+}

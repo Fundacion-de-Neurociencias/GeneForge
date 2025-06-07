@@ -1,0 +1,13 @@
+{
+  "gene_strategy": {
+    "objective": "Evaluar riesgos funcionales",
+    "steps": [
+      "Evaluar riesgos funcionales",
+      "dise?ar gRNA",
+      "evaluar secuencia",
+      "risk",
+      "offtarget:0.85"
+    ],
+    "thoughts": []
+  }
+}

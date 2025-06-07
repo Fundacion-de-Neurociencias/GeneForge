@@ -1,0 +1,21 @@
+gene_strategy {
+    objective: "Evaluar riesgos funcionales"
+    steps: [
+        "dise?ar gRNA",
+        "evaluar secuencia"
+    ]
+    thoughts: [
+        thought {
+            type: "risk"
+            attrs: {
+                val: "offtarget:0.85"
+            }
+        },
+        thought {
+            type: "residue"
+            attrs: {
+                label: "ncAA"
+            }
+        }
+    ]
+}

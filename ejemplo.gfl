@@ -1,0 +1,19 @@
+﻿chain_of_thought
+    goal: "Improve translation efficiency of therapeutic mRNA"
+    attrs:
+        utr_sequence: "AUGGCGGUGACUUGA"
+        cds_sequence: "AUGCCCUUUGGAUAG"
+        gc_pct: 0.65
+        dg: -12.5
+        uaug_count: 2
+        rbp_count: 1
+        mir_count: 1
+
+    steps:
+        thought: "Edit uAUGs to canonical AUG", type: "uaug", attrs: { frame: "1" }
+        thought: "Interrupt repeat to prevent slippage", type: "repeat_edit"
+        thought: "Avoid RBP Pumilio site", type: "rbp_site", attrs: { rbp: "Pumilio" }
+        thought: "Reduce GC content in 5'UTR", type: "gc_content", attrs: { pct: 0.70 }
+        thought: "Refold to improve secondary structure", type: "structure", attrs: { ?G: -10.0 }
+
+    evaluation: "translation_efficiency", "confidence_score"

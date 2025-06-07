@@ -41,3 +41,9 @@ parser = yacc.yacc()
 
 def parse_code(code: str):
     return parser.parse(code, lexer=lexer)
+
+# Export para otros scripts
+__all__ = ['parse_tokens']
+def parse_tokens(lines):
+    # Ejemplo mínimo que convierte lines en nodos con tipo
+    return [{"type": "dummy", "attrs": {"content": line}} for line in lines if line.strip()]

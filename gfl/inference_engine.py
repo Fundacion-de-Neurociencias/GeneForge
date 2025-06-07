@@ -1,4 +1,4 @@
-﻿import torch
+import torch
 from gfl.translate_lstm import TranslateLSTM
 
 class InferenceEngine:
@@ -22,7 +22,7 @@ class InferenceEngine:
         return {"te": round(te_pred, 3), "explanation": "Predicted via TranslateLSTM"}
 
     def post_annotate(self, ast_dict):
-        # Reglas probabilísticas existentes
+        # Reglas probabil�sticas existentes
         from gfl.prob_rules import ProbReasoner, default_rules
         post = ProbReasoner(default_rules(), prior=0.5).posterior(ast_dict)
         result = {"confidence": post["confidence"], "fired_rules": post["fired_rules"]}
@@ -30,7 +30,7 @@ class InferenceEngine:
         # Extraer features de AST si existen (ejemplo simple)
         utr_seq   = ast_dict.get("attrs",{}).get("utr_sequence","")
         cds_seq   = ast_dict.get("attrs",{}).get("cds_sequence","")
-        # Ejemplo de features: [GC%, ΔG, #uAUG, #RBP_sites, #miR_sites]
+        # Ejemplo de features: [GC%, ?G, #uAUG, #RBP_sites, #miR_sites]
         features = [
             float(ast_dict.get("attrs",{}).get("gc_pct",   0)),
             float(ast_dict.get("attrs",{}).get("dg",       0)),
@@ -41,11 +41,15 @@ class InferenceEngine:
         te_res = self.predict_translation_efficiency(utr_seq, cds_seq, features)
         result["te_prediction"] = te_res
         return result
-# ─── Handling new edit types in inference ───────────────────────
-if node.name == "prime_edit":
-    context["has_prime_edit"] = True
-    context["pegRNA"] = node.args.get("pegRNA")
+# --- Handling new edit types in inference -----------------------
+# if node.name == "prime_edit":
+#     context["has_prime_edit"] = True
+#     context["pegRNA"] = node.args.get("pegRNA")
 
-if node.name == "base_edit":
-    context["has_base_edit"] = True
-    context["base_editor"] = node.args.get("base_editor")
+# if node.name == "base_edit":
+#     context["has_base_edit"] = True
+#     context["base_editor"] = node.args.get("base_editor")
+
+def run(ast_dict):
+    engine = InferenceEngine()
+    return engine.post_annotate(ast_dict)

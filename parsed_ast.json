@@ -1,0 +1,266 @@
+[
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "gene_strategy {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "    objective: \"Evaluar riesgos funcionales\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "    thoughts: ["
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"risk\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            attrs: {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "                val: \"offtarget:0.85\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        },"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"repeat_edit\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        },"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"residue\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            attrs: {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "                label: \"ncAA\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        },"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"uaug\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            attrs: {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "                frame: \"1\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        },"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"structure\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            attrs: {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "                ?G: \"-12.5\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        },"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"gc_content\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            attrs: {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "                pct: \"0.72\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        },"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        thought {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            type: \"rbp_site\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            attrs: {"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "                rbp: \"Pumilio\""
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "            }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "        }"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "    ]"
+    }
+  },
+  {
+    "type": "dummy",
+    "attrs": {
+      "content": "}"
+    }
+  }
+]

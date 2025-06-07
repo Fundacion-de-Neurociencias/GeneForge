@@ -1,0 +1,6 @@
+thought {
+    type: "risk"
+    attrs: {
+        val: "offtarget:0.85"
+    }
+}
