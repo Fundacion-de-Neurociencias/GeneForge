@@ -347,3 +347,29 @@ my_custom_node {
 
 ?? my_custom_node - {'label': 'test_node', 'params': {'x': 1, 'y': 2}}
 
+## [2025-06-07] Recent Updates
+
+- All code and documentation are maintained strictly in English.
+- Latest pipeline includes ASCII-cleaning for GFL input files, structured parsing, and probabilistic reasoning steps.
+- Parsing and reasoning scripts are provided in Python, with clear input/output conventions.
+- Repository synchronization scripts are available for automated version control.
+- For any questions, please refer to the /docs directory or contact the project maintainer.
+
+---
+
+**Update Policy:**  
+All further documentation, code comments, and docstrings must be written in English.  
+Do not use Spanish or any other language for internal documentation under any circumstances.
+## [2025-06-07] Recent Updates
+
+- All code and documentation are maintained strictly in English.
+- Latest pipeline includes ASCII-cleaning for GFL input files, structured parsing, and probabilistic reasoning steps.
+- Parsing and reasoning scripts are provided in Python, with clear input/output conventions.
+- Repository synchronization scripts are available for automated version control.
+- For any questions, please refer to the /docs directory or contact the project maintainer.
+
+---
+
+**Update Policy:**  
+All further documentation, code comments, and docstrings must be written in English.  
+Do not use Spanish or any other language for internal documentation under any circumstances.
